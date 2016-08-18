@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements OCRManager, View.OnClickListener {
     // views
@@ -78,6 +79,19 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
             new CopyTraineddataFile(from, to).execute();
         }
     }
+
+    private String repairData(String data) {
+        String[] dataPart;
+        String result;
+
+        result = "";
+        dataPart = data.split("\n");
+        for(int x=0 ; x<dataPart.length ; x++) {
+            result += " " + dataPart[x].trim();
+        }
+
+        return result;
+    }
     // ---------------------------------------------------------------------------------------------
 
     // listener ------------------------------------------------------------------------------------
@@ -97,9 +111,11 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
                 startActivityForResult(uploadIntent, OCRProvider.REQUEST_IMAGE_UPLOAD);
                 break;
             case R.id.btnCompute:
+                String result;
                 String[] tokenizedResult;
 
-                tokenizedResult = etResult.getText().toString().split(", ");
+                result = repairData(etResult.getText().toString());
+                tokenizedResult = result.trim().split(", ");
                 ungroupDatas = new int[tokenizedResult.length];
                 for(int x=0 ; x<tokenizedResult.length ; x++) {
                     ungroupDatas[x] = Integer.parseInt(tokenizedResult[x]);

@@ -26,6 +26,7 @@ public class Compute extends AppCompatActivity {
         initVars();
     }
 
+    // initialize ----------------------------------------------------------------------------------
     private void initViews() {
         tvMean = (TextView) findViewById(R.id.tvMean);
         tvMedian = (TextView) findViewById(R.id.tvMedian);
@@ -56,4 +57,5 @@ public class Compute extends AppCompatActivity {
                 tvMode.append(mode.get(x) + ", ");
         }
     }
+    // ---------------------------------------------------------------------------------------------
 }
