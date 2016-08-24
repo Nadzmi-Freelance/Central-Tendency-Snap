@@ -4,82 +4,127 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:padding="10dp"
     tools:context="com.seladanghijau.centraltendencysnap.activity.Compute">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvMean"
-            android:text="Mean: "
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-    </LinearLayout>
+            android:padding="10dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/tvMedian"
-            android:text="Median: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvMean"
+                    android:text="Mean: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+                <TextView
+                    android:id="@+id/tvMeanStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#0000ff" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvMode"
-            android:text="Mode: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+                <TextView
+                    android:id="@+id/tvMedian"
+                    android:text="Median: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/tvStandardDeviation"
-            android:text="Standard Deviation: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvMedianStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#0000ff" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/tvVariance"
-            android:text="Variance: "
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvMode"
+                    android:text="Mode: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/tvModeStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#0000ff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/tvStandardDeviation"
+                    android:text="Standard Deviation: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/tvStandardDeviationStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#0000ff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/tvVariance"
+                    android:text="Variance: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvVarianceStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#0000ff" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

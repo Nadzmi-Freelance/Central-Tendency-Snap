@@ -1,7 +1,11 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seladanghijau.centraltendencysnap.R;
@@ -9,10 +13,14 @@ import com.seladanghijau.centraltendencysnap.provider.Calculator;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Compute extends AppCompatActivity {
     // views
     TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance;
+    TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep;
 
     // vars
     int[] ungroupData;
@@ -33,15 +41,20 @@ public class Compute extends AppCompatActivity {
         tvMode = (TextView) findViewById(R.id.tvMode);
         tvStandardDeviation = (TextView) findViewById(R.id.tvStandardDeviation);
         tvVariance = (TextView) findViewById(R.id.tvVariance);
+        tvMeanStep = (TextView) findViewById(R.id.tvMeanStep);
+        tvMedianStep = (TextView) findViewById(R.id.tvMedianStep);
+        tvStandardDeviationStep = (TextView) findViewById(R.id.tvStandardDeviationStep);
+        tvVarianceStep = (TextView) findViewById(R.id.tvVarianceStep);
+        tvModeStep = (TextView) findViewById(R.id.tvModeStep);
     }
 
     private void initVars() {
         ungroupData = getIntent().getIntArrayExtra("ungroup-data");
-        calculator = new Calculator(ungroupData);
+        calculator = new Calculator(this, ungroupData);
 
         double mean = calculator.mean();
         int median = calculator.median();
-        ArrayList<Integer> mode = calculator.mode();
+        List<Integer> mode = calculator.mode();
         double standardDeviation = calculator.standardDeviation();
         double variance = calculator.variance();
 
@@ -51,11 +64,17 @@ public class Compute extends AppCompatActivity {
         tvStandardDeviation.setText("Standard Deviation: " + standardDeviation);
         tvVariance.setText("Variance: " + variance);
         for(int x=0 ; x<mode.size() ; x++) {
-            if(x+1 > mode.size())
+            if(x == mode.size()-1)
                 tvMode.append("" + mode.get(x));
             else
                 tvMode.append(mode.get(x) + ", ");
         }
+
+        tvMeanStep.setText(calculator.meanStep());
+        tvMedianStep.setText(calculator.medianStep());
+        tvModeStep.setText(calculator.modeStep());
+        tvStandardDeviationStep.setText(calculator.standardDeviationStep());
+        tvVarianceStep.setText(calculator.varianceStep());
     }
     // ---------------------------------------------------------------------------------------------
 }
