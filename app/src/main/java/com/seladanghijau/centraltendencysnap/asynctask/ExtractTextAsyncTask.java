@@ -52,9 +52,11 @@ public class ExtractTextAsyncTask extends AsyncTask<Void, Void, Void> {
         try {
             tessBaseAPI = new TessBaseAPI();
             tessBaseAPI.init(OCRProvider.TESSDATA_DIR_PATH + "/", OCRProvider.LANGUAGE);
+            image = OCRProvider.toGrayscale(image); // change image to grayscale
             tessBaseAPI.setImage(image);
 
             result = tessBaseAPI.getUTF8Text();
+            result = result.replaceAll("^[a-zA-Z]+", "");
 
             tessBaseAPI.end();
         } catch (Exception e) { e.printStackTrace(); }

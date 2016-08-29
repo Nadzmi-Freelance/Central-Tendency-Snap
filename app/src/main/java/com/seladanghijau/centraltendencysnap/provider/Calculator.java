@@ -81,38 +81,42 @@ public class Calculator {
 
     // step methods --------------------------------------------------------------------------------
     public String meanStep() {
-        String info, init, step1, answer;
-        String xList;
+        String info, init, step1;
+        String xList, sumXList;
         int n, sumX;
         int[] x;
 
         sumX = 0;
         xList = "";
+        sumXList = "";
         x = ungroupData;
         n = ungroupData.length;
         for(int a=0 ; a<n ; a++) {
             sumX += x[a];
 
-            if(a == n-1)
+            if(a == n-1) {
                 xList += x[a];
-            else
+                sumXList += x[a];
+            } else {
                 xList += x[a] + ", ";
+                sumXList += x[a] + " + ";
+            }
         }
 
-        info = "\t\tMean = " + Html.fromHtml("&#8721;") + "x / n";
-        init = "\t\tx = " + xList + "\n\t" +
-                "\t\t" + Html.fromHtml("&#8721;") + "x = " + sumX + "\n\t" +
-                "\t\tn = " + n;
-        step1 = "\t\t" + Html.fromHtml("&#8721;") + "x / n\n" +
-                "\t\t\t= " + sumX + " / " + n + "\n" +
-                "\t\t\t= " + ((double) sumX / n);
-        answer = "\t" + Html.fromHtml("&there4;") + " Mean = " + mean();
+        info = "\tMean = " + Html.fromHtml("&#8721;") + "x / n";
+        init = "\tx = " + xList + "\n" +
+                "\t" + Html.fromHtml("&#8721;") + "x = " + sumXList + "\n" +
+                "\t\t  = " + sumX + "\n" +
+                "\tn = " + n;
+        step1 = "\t" + Html.fromHtml("&#8721;") + "x / n\n" +
+                "\t\t= " + sumX + " / " + n + "\n" +
+                "\t\t= " + ((double) sumX / n);
 
-        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + answer;
+        return info + "\n\n" + init + "\n\n" + step1;
     }
 
     public String medianStep() {
-        String init, step1, step2, step3, step4, answer;
+        String init, step1, step2, step3, step4;
         String xList, sortedXList;
         int varN;
         int[] varX, sortedX;
@@ -132,35 +136,34 @@ public class Calculator {
             }
         }
 
-        init = "\t\tx = " + xList + "\n" +
-                "\t\tn = " + varN;
-        step1 = "\t\tArrange values in ascending order :\n\n" +
-                "\t\t\t x = " + sortedXList;
+        init = "\tx = " + xList + "\n" +
+                "\tn = " + varN;
+        step1 = "\tArrange values in ascending order :\n\n" +
+                "\t\t x = " + sortedXList;
         if(varN % 2 != 0) {
-            step2 = "\t\tFind median position:\n\n" +
-                    "\t\t\tn is odd:\n" +
-                    "\t\t\t= (n + 1) / 2";
-            step3 = "\t\t\t= (" + varN + " + 1) / 2";
+            step2 = "\tFind median position:\n\n" +
+                    "\t\tn is odd:\n" +
+                    "\t\t= (n + 1) / 2";
+            step3 = "\t\t= (" + varN + " + 1) / 2";
         } else {
-            step2 = "\t\tFind median position:\n\n" +
-                    "\t\t\tn is even:\n" +
-                    "\t\t\t= (n/2 + 1)";
-            step3 = "\t\t\t= (" + varN + "/2 +1)\n" +
-                    "\t\t\t= " + ((varN / 2) + 1);
+            step2 = "\tFind median position:\n\n" +
+                    "\t\tn is even:\n" +
+                    "\t\t= (n/2 + 1)";
+            step3 = "\t\t= (" + varN + "/2 +1)\n" +
+                    "\t\t= " + ((varN / 2) + 1);
         }
-        step4 = "\t\tMedian is at position " + ((varN / 2) + 1);
-        answer = "\t" + Html.fromHtml("&there4;") + " Median = " + median();
+        step4 = "\tMedian is at position " + ((varN / 2) + 1);
 
-        return init + "\n\n" + step1 + "\n\n" + step2 + "\n" + step3 + "\n\n" + step4 + "\n\n" + answer;
+
+        return init + "\n\n" + step1 + "\n\n" + step2 + "\n" + step3 + "\n\n" + step4;
     }
 
     public String modeStep() {
-        String info, init, answer;
-        String modeList, xList;
+        String info, init;
+        String xList;
         int[] varX;
 
         xList = "";
-        modeList = "";
         varX = ungroupData.clone();
         for(int x=0 ; x<varX.length ; x++) {
             if(x == varX.length-1)
@@ -168,25 +171,16 @@ public class Calculator {
             else
                 xList += varX[x] + ", ";
         }
-        for(int x=0 ; x<mode().size() ; x++) {
-            Integer varMode = mode().get(x);
 
-            if(x == mode().size()-1)
-                modeList += varMode;
-            else
-                modeList += varMode + ", ";
-        }
+        info = "\tMode = Value that most frequently occurs in the given data.";
+        init = "\tx = " + xList;
 
-        info = "\t\tMode = Value that most frequently occurs in the given data.";
-        init = "\t\tx = " + xList;
-        answer = "\t" + Html.fromHtml("&there4;") + "Mode = " + modeList;
-
-        return info + "\n\n" + init + "\n\n" + answer;
+        return info + "\n\n" + init;
     }
 
     public String standardDeviationStep() {
-        String formula, xList;
-        String info, init, step1, step2, answer;
+        String formula, xList, sumXList, sumX2List;
+        String info, init, step1, step2;
         int varN, sumX, sumX2, sum2X;
         int[] varX, varX2;
 
@@ -204,11 +198,18 @@ public class Calculator {
         sum2X = sumX2 * sumX2;
 
         xList = "";
+        sumXList = "";
+        sumX2List = "";
         for(int x=0 ; x<varN ; x++) {
-            if(x == varN-1)
+            if(x == varN-1) {
                 xList += "" + varX[x];
-            else
+                sumXList += "" + varX[x];
+                sumX2List += "" + varX2[x];
+            } else {
                 xList += "" + varX[x] + ", ";
+                sumXList += "" + varX[x] + " + ";
+                sumX2List += "" + varX2[x] + " + ";
+            }
         }
 
         formula = "S = " + Html.fromHtml("&radic;") +
@@ -217,21 +218,24 @@ public class Calculator {
                     " * " +
                     "(" +
                         "(" +
-                        Html.fromHtml("&sum;") + "x2" +
+                        Html.fromHtml("&sum;") + "x^2" +
                         " - " +
                         "(" +
-                            "(" + Html.fromHtml("&sum;") + "x)2" +
+                            "(" + Html.fromHtml("&sum;") + "x)^2" +
                         ") / n" +
                     ")" +
                 "]";
 
-        info = "\t\t" + formula;
-        init = "\t\tx = " + xList + "\n" +
-                "\t\tn = " + varN + "\n" +
-                "\t\t" + Html.fromHtml("&sum;") + "x = " + sumX + "\n" +
-                "\t\t" + Html.fromHtml("&sum;") + "x2 = " + sumX2 + "\n" +
-                "\t\t(" + Html.fromHtml("&sum;") + "x)2 = " + sum2X;
-        step1 = "\t\tS = " + Html.fromHtml("&radic;") +
+        info = "\t" + formula;
+        init = "\tx = " + xList + "\n" +
+                "\tn = " + varN + "\n" +
+                "\t" + Html.fromHtml("&sum;") + "x = " + sumXList + "\n" +
+                "\t\t  = " + sumX + "\n" +
+                "\t" + Html.fromHtml("&sum;") + "x^2 = " + sumX2List + "\n" +
+                "\t\t\t   = " + sumX2 + "\n" +
+                "\t(" + Html.fromHtml("&sum;") + "x)^2 = (" + sumXList + ")^2\n" +
+                "\t\t\t\t  = " + sum2X;
+        step1 = "\tS = " + Html.fromHtml("&radic;") +
                 "[" +
                     "(1 / (" + varN+ " - 1))" +
                     " * " +
@@ -244,26 +248,74 @@ public class Calculator {
                             ") / " + varN +
                     ")" +
                 "]";
-        step2 = "\t\tS = " + standardDeviation();
-        answer = "\t" + Html.fromHtml("&there4;") + "S = " + standardDeviation();
+        step2 = "\tS = " + standardDeviation();
 
-        return info + "\n\n" + init + "\n\n" + step1 + "\n" + step2 + "\n\n" + answer;
+        return info + "\n\n" + init + "\n\n" + step1 + "\n" + step2;
     }
 
     public String varianceStep() {
         String info, init, answer;
-        double S, S2;
+        double S;
 
         S = standardDeviation();
-        S2 = variance();
 
-        info = "\t\tS = Standard Deviation\n" +
-                "\t\tVariance = S X S";
-        init = "\t\tS = " + S + "\n" +
-                "\t\tS X S = " + Math.pow(S, 2);
+        info = "\tS = Standard Deviation\n" +
+                "\tVariance = S^2";
+        init = "\tS = " + S + "\n" +
+                "\tS^2 = " + Math.pow(S, 2);
+
+        return info + "\n\n" + init;
+    }
+
+    public String meanAnswer() {
+        String answer;
+
+        answer = "\t" + Html.fromHtml("&there4;") + " Mean = " + mean();
+
+        return answer;
+    }
+
+    public String medianAnswer() {
+        String answer;
+
+        answer = "\t" + Html.fromHtml("&there4;") + " Median = " + median();
+
+        return answer;
+    }
+
+    public String modeAnswer() {
+        String modeList, answer;
+
+        modeList = "";
+        for(int x=0 ; x<mode().size() ; x++) {
+            Integer varMode = mode().get(x);
+
+            if(x == mode().size()-1)
+                modeList += varMode;
+            else
+                modeList += varMode + ", ";
+        }
+        answer = "\t" + Html.fromHtml("&there4;") + " Mode = " + modeList;
+
+        return answer;
+    }
+
+    public String standardDeviationAnswer() {
+        String answer;
+
+        answer = "\t" + Html.fromHtml("&there4;") + " S = " + standardDeviation();
+
+        return answer;
+    }
+
+    public String varianceAnswer() {
+        String answer;
+        double S2;
+
+        S2 = variance();
         answer = "\t" + Html.fromHtml("&there4;") + " Variance = " + S2;
 
-        return info + "\n\n" + init + "\n\n" + answer;
+        return answer;
     }
     // ---------------------------------------------------------------------------------------------
 

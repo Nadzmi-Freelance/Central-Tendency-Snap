@@ -1,5 +1,6 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -92,6 +93,21 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
 
         return result;
     }
+
+    public void performCrop(Uri imageUri) {
+        Intent cropIntent;
+
+        try {
+            cropIntent = new Intent("com.android.camera.action.CROP");
+            cropIntent.setDataAndType(imageUri, "image/*");
+            cropIntent.putExtra("crop", "true");
+            cropIntent.putExtra("scale", true);
+            cropIntent.putExtra("noFaceDetection", true);
+            cropIntent.putExtra("return-data", true);
+
+            startActivityForResult(cropIntent, OCRProvider.PIC_CROP);
+        } catch (Exception e) { e.printStackTrace(); }
+    }
     // ---------------------------------------------------------------------------------------------
 
     // listener ------------------------------------------------------------------------------------
@@ -142,25 +158,33 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == OCRProvider.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bitmap imageBitmap;
+        if(resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case OCRProvider.REQUEST_IMAGE_CAPTURE:
+                    Uri imgUri;
 
-            imageBitmap = (Bitmap) data.getExtras().get("data");
+                    imgUri = data.getData();
+                    performCrop(imgUri);
+                    break;
+                case OCRProvider.REQUEST_IMAGE_UPLOAD:
+                    Uri imageUri;
 
-            ivImg.setImageBitmap(imageBitmap);
-            new ExtractTextAsyncTask(this, this, imageBitmap).execute();
-        } else if (requestCode == OCRProvider.REQUEST_IMAGE_UPLOAD && resultCode == RESULT_OK) {
-            Uri imageUri;
-            Bitmap imageBitmap;
+                    imageUri = data.getData();
+                    performCrop(imageUri);
+                    break;
+                case  OCRProvider.PIC_CROP:
+                    Bundle extras;
+                    Bitmap croppedImg;
 
-            try {
-                imageUri = data.getData();
-                imageBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                    extras = data.getExtras();
+                    croppedImg = extras.getParcelable("data");
+                    croppedImg = OCRProvider.toGrayscale(croppedImg);
 
-                ivImg.setImageBitmap(imageBitmap);
-                new ExtractTextAsyncTask(this, this, imageBitmap).execute();
-            } catch (Exception e) {
-                e.printStackTrace();
+                    ivImg.setImageBitmap(croppedImg);
+                    new ExtractTextAsyncTask(this, this, croppedImg).execute();
+
+                    ivImg.invalidate();
+                    break;
             }
         }
     }

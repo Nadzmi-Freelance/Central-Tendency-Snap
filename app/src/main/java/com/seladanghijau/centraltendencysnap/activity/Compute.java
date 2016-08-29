@@ -21,6 +21,7 @@ public class Compute extends AppCompatActivity {
     // views
     TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance;
     TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep;
+    TextView tvMeanAnswer, tvMedianAnswer, tvModeAnswer, tvStandardDeviationAnswer, tvVarianceAnswer;
 
     // vars
     int[] ungroupData;
@@ -41,11 +42,18 @@ public class Compute extends AppCompatActivity {
         tvMode = (TextView) findViewById(R.id.tvMode);
         tvStandardDeviation = (TextView) findViewById(R.id.tvStandardDeviation);
         tvVariance = (TextView) findViewById(R.id.tvVariance);
+
         tvMeanStep = (TextView) findViewById(R.id.tvMeanStep);
         tvMedianStep = (TextView) findViewById(R.id.tvMedianStep);
         tvStandardDeviationStep = (TextView) findViewById(R.id.tvStandardDeviationStep);
         tvVarianceStep = (TextView) findViewById(R.id.tvVarianceStep);
         tvModeStep = (TextView) findViewById(R.id.tvModeStep);
+
+        tvMeanAnswer = (TextView) findViewById(R.id.tvMeanAnswer);
+        tvMedianAnswer = (TextView) findViewById(R.id.tvMedianAnswer);
+        tvModeAnswer = (TextView) findViewById(R.id.tvModeAnswer);
+        tvStandardDeviationAnswer = (TextView) findViewById(R.id.tvStandardDeviationAnswer);
+        tvVarianceAnswer = (TextView) findViewById(R.id.tvVarianceAnswer);
     }
 
     private void initVars() {
@@ -60,9 +68,9 @@ public class Compute extends AppCompatActivity {
 
         tvMean.setText("Mean: " + mean);
         tvMedian.setText("Median: " + median);
-        tvMode.setText("Mode: ");
         tvStandardDeviation.setText("Standard Deviation: " + standardDeviation);
         tvVariance.setText("Variance: " + variance);
+        tvMode.setText("Mode: ");
         for(int x=0 ; x<mode.size() ; x++) {
             if(x == mode.size()-1)
                 tvMode.append("" + mode.get(x));
@@ -75,6 +83,12 @@ public class Compute extends AppCompatActivity {
         tvModeStep.setText(calculator.modeStep());
         tvStandardDeviationStep.setText(calculator.standardDeviationStep());
         tvVarianceStep.setText(calculator.varianceStep());
+
+        tvMeanAnswer.setText(calculator.meanAnswer());
+        tvMedianAnswer.setText(calculator.medianAnswer());
+        tvModeAnswer.setText(calculator.modeAnswer());
+        tvStandardDeviationAnswer.setText(calculator.standardDeviationAnswer());
+        tvVarianceAnswer.setText(calculator.varianceAnswer());
     }
     // ---------------------------------------------------------------------------------------------
 }

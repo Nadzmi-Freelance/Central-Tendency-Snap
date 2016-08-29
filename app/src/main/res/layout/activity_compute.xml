@@ -36,6 +36,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#0000ff" />
+
+                <TextView
+                    android:id="@+id/tvMeanAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <LinearLayout
@@ -58,6 +65,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#0000ff" />
+
+                <TextView
+                    android:id="@+id/tvMedianAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <LinearLayout
@@ -80,6 +94,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#0000ff" />
+
+                <TextView
+                    android:id="@+id/tvModeAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <LinearLayout
@@ -102,6 +123,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#0000ff" />
+
+                <TextView
+                    android:id="@+id/tvStandardDeviationAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <LinearLayout
@@ -124,6 +152,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="#0000ff" />
+
+                <TextView
+                    android:id="@+id/tvVarianceAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#FF0000" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
