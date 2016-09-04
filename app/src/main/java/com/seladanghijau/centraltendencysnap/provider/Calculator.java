@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.text.Html;
 import android.widget.ListView;
 
+import org.apache.commons.math3.distribution.IntegerDistribution;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
@@ -76,6 +77,37 @@ public class Calculator {
 
     public double variance() {
         return Math.pow(standardDeviation(), 2);
+    }
+
+    // FIXME: 2/9/2016 - buat function utk 1st & 3rd quartile serta step & answer
+    public double firstQuartile() {
+        int n, posQ1;
+        double valQ1, remainder, pos;
+        int[] tempData;
+
+        tempData = ungroupData.clone();
+        n = tempData.length;
+        pos = (n + 1) / 4.0;
+        posQ1 = (int) pos; // get position of q1
+        remainder = pos - posQ1; // get remainder of pos Q1
+        valQ1 = tempData[posQ1-1] + (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) * remainder; // find value of Q1
+
+        return valQ1;
+    }
+
+    public double thirdQuartile() {
+        int n, posQ3;
+        double valQ3, remainder, pos;
+        int[] tempData;
+
+        tempData = ungroupData.clone();
+        n = tempData.length;
+        pos = 3 * (n + 1) / 4.0;
+        posQ3 = (int) pos; // get position of q3
+        remainder = pos - posQ3; // get remainder of pos Q3
+        valQ3 = tempData[posQ3-1] + (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) * remainder; // find value of Q3
+
+        return valQ3;
     }
     // ---------------------------------------------------------------------------------------------
 
@@ -267,6 +299,75 @@ public class Calculator {
         return info + "\n\n" + init;
     }
 
+    // FIXME: 3/9/2016 - create method for step
+    public String firstQuartileStep() {
+        String xList;
+        String info, init, step1, step2;
+        int[] tempData;
+        int n, posQ1;
+        double pos, remainder;
+
+        tempData = ungroupData.clone();
+        n = tempData.length;
+        pos = (n + 1) / 4.0;
+        posQ1 = (int) pos;
+        remainder = pos - posQ1;
+
+        xList = "";
+        for(int x=0 ; x<tempData.length ; x++) {
+            if(x == tempData.length-1)
+                xList += tempData[x];
+            else
+                xList += tempData[x] + ", ";
+        }
+
+        info = "\t\tPosition Q1 = (n + 1) / 4";
+        init = "\t\tx = " + xList + "\n" +
+                "\t\tn = " + n;
+        step1 = "\t\tPosition Q1 = (n + 1) / 4\n" +
+                "\t\t\t\t\t\t\t\t\t\t= (" + n + " + 1) / 4\n" +
+                "\t\t\t\t\t\t\t\t\t\t= " + pos;
+        step2 = "\t\tQ1 = " + tempData[posQ1-1] + " + (" + tempData[(posQ1-1) + 1] + " - " + tempData[posQ1-1] + ") X " + remainder + "\n" +
+                "\t\t\t\t = " + tempData[posQ1-1] + " + (" +  (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) + ") X " + remainder + "\n" +
+                "\t\t\t\t = " + (tempData[posQ1-1] + (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) * remainder);
+
+        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
+    }
+
+    public String thirdQuartileStep() {
+        String xList;
+        String info, init, step1, step2;
+        int[] tempData;
+        int n, posQ3;
+        double pos, remainder;
+
+        tempData = ungroupData.clone();
+        n = tempData.length;
+        pos = (3 * (n + 1)) / 4.0;
+        posQ3 = (int) pos;
+        remainder = pos - posQ3;
+
+        xList = "";
+        for(int x=0 ; x<tempData.length ; x++) {
+            if(x == tempData.length-1)
+                xList += tempData[x];
+            else
+                xList += tempData[x] + ", ";
+        }
+
+        info = "\t\tPosition Q3 = 3(n + 1) / 4";
+        init = "\t\tx = " + xList + "\n" +
+                "\t\tn = " + n;
+        step1 = "\t\tPosition Q3 = 3(n + 1) / 4\n" +
+                "\t\t\t\t\t\t\t\t\t\t= 3(" + n + " + 1) / 4\n" +
+                "\t\t\t\t\t\t\t\t\t\t= " + pos;
+        step2 = "\t\tQ1 = " + tempData[posQ3-1] + " + (" + tempData[(posQ3-1) + 1] + " - " + tempData[posQ3-1] + ") X " + remainder + "\n" +
+                "\t\t\t\t = " + tempData[posQ3-1] + " + (" +  (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) + ") X " + remainder + "\n" +
+                "\t\t\t\t = " + (tempData[posQ3-1] + (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) * remainder);
+
+        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
+    }
+
     public String meanAnswer() {
         String answer;
 
@@ -314,6 +415,22 @@ public class Calculator {
 
         S2 = variance();
         answer = "\t" + Html.fromHtml("&there4;") + " Variance = " + S2;
+
+        return answer;
+    }
+
+    public String firstQuartileAnswer() {
+        String answer;
+
+        answer = "\t" + Html.fromHtml("&there4;") + " Q1 = " + firstQuartile();
+
+        return answer;
+    }
+
+    public String thirdQuartileAnswer() {
+        String answer;
+
+        answer = "\t" + Html.fromHtml("&there4;") + " Q3 = " + thirdQuartile();
 
         return answer;
     }

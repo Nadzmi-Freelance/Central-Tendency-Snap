@@ -10,6 +10,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 
 /**
  * Created by seladanghijau on 14/8/2016.
@@ -45,5 +46,50 @@ public class OCRProvider {
         grayscaleCanvas.drawBitmap(image, 0, 0, grayscalePaint);
 
         return grayscale;
+    }
+
+    // FIXME: 29/8/2016 - function to corect the input
+    public static String getTokenizedString(String data) {
+        String result;
+
+        result = "";
+        if(data.contains("\n")) {
+            String[] dataPart;
+            String tempResult;
+
+            tempResult = "";
+            dataPart = data.split("\n");
+            for(int x=0 ; x<dataPart.length ; x++) {
+                tempResult += " " + dataPart[x].trim();
+            }
+
+            result = tempResult;
+        } else
+            result = data;
+
+        result = finalRepair(result);
+
+        return result;
+    }
+
+    public static String finalRepair(String data) {
+        String[] dataparts;
+        String tempResult;
+
+        tempResult = data;
+        dataparts = tempResult.split(",");
+
+        tempResult = "";
+        for(int x=0 ; x<dataparts.length ; x++) {
+            if(dataparts[x].equalsIgnoreCase("s"))
+                dataparts[x] = "5";
+
+            if(x == dataparts.length-1)
+                tempResult += dataparts[x].trim();
+            else
+                tempResult += dataparts[x].trim() + ", ";
+        }
+
+        return tempResult;
     }
 }

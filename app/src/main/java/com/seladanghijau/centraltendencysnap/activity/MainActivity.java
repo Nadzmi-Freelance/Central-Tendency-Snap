@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,19 +82,6 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
         }
     }
 
-    private String repairData(String data) {
-        String[] dataPart;
-        String result;
-
-        result = "";
-        dataPart = data.split("\n");
-        for(int x=0 ; x<dataPart.length ; x++) {
-            result += " " + dataPart[x].trim();
-        }
-
-        return result;
-    }
-
     public void performCrop(Uri imageUri) {
         Intent cropIntent;
 
@@ -130,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements OCRManager, View.
                 String result;
                 String[] tokenizedResult;
 
-                result = repairData(etResult.getText().toString());
+                result = OCRProvider.getTokenizedString(etResult.getText().toString());
                 tokenizedResult = result.trim().split(", ");
                 ungroupDatas = new int[tokenizedResult.length];
                 for(int x=0 ; x<tokenizedResult.length ; x++) {

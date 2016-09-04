@@ -19,9 +19,10 @@ import java.util.Set;
 
 public class Compute extends AppCompatActivity {
     // views
-    TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance;
-    TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep;
-    TextView tvMeanAnswer, tvMedianAnswer, tvModeAnswer, tvStandardDeviationAnswer, tvVarianceAnswer;
+    TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance, tvQuartile;
+    TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep, tvQuartileStep;
+    TextView tvMeanAnswer, tvMedianAnswer, tvModeAnswer, tvStandardDeviationAnswer, tvVarianceAnswer, tvQuartileAnswer;
+    ImageView ivWhiskersDiagram;
 
     // vars
     int[] ungroupData;
@@ -42,18 +43,21 @@ public class Compute extends AppCompatActivity {
         tvMode = (TextView) findViewById(R.id.tvMode);
         tvStandardDeviation = (TextView) findViewById(R.id.tvStandardDeviation);
         tvVariance = (TextView) findViewById(R.id.tvVariance);
+        tvQuartile = (TextView) findViewById(R.id.tvQuartile);
 
         tvMeanStep = (TextView) findViewById(R.id.tvMeanStep);
         tvMedianStep = (TextView) findViewById(R.id.tvMedianStep);
         tvStandardDeviationStep = (TextView) findViewById(R.id.tvStandardDeviationStep);
         tvVarianceStep = (TextView) findViewById(R.id.tvVarianceStep);
         tvModeStep = (TextView) findViewById(R.id.tvModeStep);
+        tvQuartileStep = (TextView) findViewById(R.id.tvQuartileStep);
 
         tvMeanAnswer = (TextView) findViewById(R.id.tvMeanAnswer);
         tvMedianAnswer = (TextView) findViewById(R.id.tvMedianAnswer);
         tvModeAnswer = (TextView) findViewById(R.id.tvModeAnswer);
         tvStandardDeviationAnswer = (TextView) findViewById(R.id.tvStandardDeviationAnswer);
         tvVarianceAnswer = (TextView) findViewById(R.id.tvVarianceAnswer);
+        tvQuartileAnswer = (TextView) findViewById(R.id.tvQuartileAnswer);
     }
 
     private void initVars() {
@@ -70,6 +74,9 @@ public class Compute extends AppCompatActivity {
         tvMedian.setText("Median: " + median);
         tvStandardDeviation.setText("Standard Deviation: " + standardDeviation);
         tvVariance.setText("Variance: " + variance);
+        tvQuartile.setText("Quartile :" +
+                "\n\tFirst Quartile (Q1): " + calculator.firstQuartile() +
+                "\n\tThird Quartile (Q3): " + calculator.thirdQuartile());
         tvMode.setText("Mode: ");
         for(int x=0 ; x<mode.size() ; x++) {
             if(x == mode.size()-1)
@@ -83,12 +90,20 @@ public class Compute extends AppCompatActivity {
         tvModeStep.setText(calculator.modeStep());
         tvStandardDeviationStep.setText(calculator.standardDeviationStep());
         tvVarianceStep.setText(calculator.varianceStep());
+        tvQuartileStep.setText("\n\tQ1:\n" + calculator.firstQuartileStep() + "\n\n\tQ3:\n" + calculator.thirdQuartileStep());
 
         tvMeanAnswer.setText(calculator.meanAnswer());
         tvMedianAnswer.setText(calculator.medianAnswer());
         tvModeAnswer.setText(calculator.modeAnswer());
         tvStandardDeviationAnswer.setText(calculator.standardDeviationAnswer());
         tvVarianceAnswer.setText(calculator.varianceAnswer());
+        tvQuartileAnswer.setText(calculator.firstQuartileAnswer() + "\n" + calculator.thirdQuartileAnswer());
+    }
+    // ---------------------------------------------------------------------------------------------
+
+    // listener ------------------------------------------------------------------------------------
+    public void onBackPressed() {
+        finish();
     }
     // ---------------------------------------------------------------------------------------------
 }
