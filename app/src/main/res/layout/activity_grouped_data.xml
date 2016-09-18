@@ -9,61 +9,65 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
-
-        <TextView
-            android:text="Group Data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+        android:layout_height="match_parent">
 
         <TextView
             android:text="@string/input_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:textColor="#ff0000" />
+            android:textColor="#ff0000"
+            android:padding="10dp" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:padding="10dp">
 
             <TextView
                 android:text="@string/x_value_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000" />
+                android:textColor="@color/colorTertiary" />
 
             <EditText
                 android:id="@+id/etXInput"
                 android:hint="@string/x_value_hint"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColorHint="#50ffffff"
+                android:textColor="#ffffff"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1" />
 
             <TextView
                 android:text="@string/y_value_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000" />
+                android:textColor="@color/colorTertiary" />
 
             <EditText
                 android:id="@+id/etYInput"
                 android:hint="@string/y_value_hint"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColorHint="#50ffffff"
+                android:textColor="#ffffff"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1" />
 
             <Button
                 android:text="Compute"
                 android:id="@+id/btnCompute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/state_button" />
         </LinearLayout>
     </LinearLayout>
 

@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true">
 
         <EditText
@@ -24,31 +25,43 @@
             android:hint="Extracted text from image. \n\nYou can input it yourself to compute the value."
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:inputType="textMultiLine" />
+            android:textColorHint="@color/colorSecondary"
+            android:textColor="@color/colorTertiary"
+            android:inputType="textMultiLine"
+            android:padding="5dp"
+            android:background="@color/colorPrimaryDark"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:text="Upload"
                 android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
+                android:textColor="#ffffff"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/state_button" />
 
             <Button
                 android:text="Capture"
                 android:id="@+id/btnCapture"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true" />
+                android:textColor="#ffffff"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/state_button" />
         </RelativeLayout>
 
         <Button
             android:text="Compute"
             android:id="@+id/btnCompute"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/state_button" />
     </LinearLayout>
 </RelativeLayout>
