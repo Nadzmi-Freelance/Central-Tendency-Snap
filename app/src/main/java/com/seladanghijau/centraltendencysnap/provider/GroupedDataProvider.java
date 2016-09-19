@@ -31,7 +31,6 @@ public class GroupedDataProvider {
         return result;
     }
 
-    // FIXME: 14/9/2016 - implement provider utk median & mode
     public static double median(XInput xInput, int[] yInput) {
         int n, medianClassIndex;
         double medianPos, c, medLCB;
@@ -55,7 +54,7 @@ public class GroupedDataProvider {
             }
         }
 
-        // get lcl median class
+        // get lcb median class
         medLCB = xInput.getLCB(medianClassIndex);
 
         // find cumulative frequency before median class
@@ -162,10 +161,144 @@ public class GroupedDataProvider {
 
         return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
     }
+
+    public static String medianStep(String xList, String yList, XInput xInput, int[] yInput) {
+        String info, init, step1, step2;
+        String sumNList, nBefList;
+        int medianClassIndex, nBef;
+        double c, n, medianPos;
+
+        n = 0;
+        sumNList = "";
+        for(int x=0 ; x<yInput.length ; x++) {
+            n += yInput[x];
+
+            if (x == (yInput.length - 1)) {
+                sumNList += yInput[x];
+            } else {
+                sumNList += yInput[x] + " + ";
+            }
+        }
+
+        double tempMedF = 0;
+        medianPos = n / 2.0;
+        medianClassIndex = 0;
+        for(int x=0 ; x<yInput.length ; x++) {
+            tempMedF += yInput[x];
+            if(tempMedF >= medianPos) {
+                medianClassIndex = x;
+                break;
+            }
+        }
+
+        nBef = 0; // cumulative f before median class
+        nBefList = "";
+        for(int x=0 ; x<medianClassIndex ; x++) {
+            nBef += yInput[x];
+
+            if (x == (medianClassIndex - 1)) {
+                nBefList += yInput[x];
+            } else {
+                nBefList += yInput[x] + " + ";
+            }
+        }
+
+        c = xInput.getClassWidth();
+
+        info = "Median = Lmed + (((n / 2) - " + Html.fromHtml("&sum;") + "fm-1) / fm) X C\n" +
+                "\tLmed = lower class boundary of median class\n" +
+                "\t" + Html.fromHtml("&sum;") + "fm-1 = Cumulative frequency before median class\n" +
+                "\tfm = Frequency of the median class\n" +
+                "\tC = Class size\n" +
+                "\t\t= UCB - LCB";
+        init = "1) Find cumulative frequency\n" +
+                "\tn = " + sumNList + "\n" +
+                "\t\t= " + n + "\n" +
+                "2) Find position of median\n" +
+                "\tPosition median = n / 2\n" +
+                "\t\t= " + n + " / 2 = " + medianPos + "\n" +
+                "3) Find median class\n" +
+                "\tMedian class = " + xInput.getLCL(medianClassIndex) + "-" + xInput.getUCL(medianClassIndex);
+        step1 = "Median = Lmed + (((n / 2) - " + Html.fromHtml("&sum;") + "fm-1) / fm) X C\n" +
+                "\tLmed = " + xInput.getLCL(medianClassIndex) + "\n" +
+                "\t" + Html.fromHtml("&sum;") + "fm-1 = " + nBefList + "\n" +
+                "\t\t= " + nBef + "\n" +
+                "\tfm = " + yInput[medianClassIndex] + "\n" +
+                "\tC = Class size\n" +
+                "\t\t= UCB - LCB" + "\n" +
+                "\t\t= " + xInput.getUCB(medianClassIndex) + " - " + xInput.getLCB(medianClassIndex);
+        step2 = "Median = " + xInput.getLCL(medianClassIndex) + " + (((" + n + " / 2) - " + nBef + ") / " + yInput[medianClassIndex] + ") X " + c + "\n" +
+                "\t= " + xInput.getLCL(medianClassIndex) + " + (((" + n/2 + ") - " + nBef + ") / " + yInput[medianClassIndex] + ") X " + c + "\n" +
+                "\t= " + xInput.getLCL(medianClassIndex) + " + ((" + ((n/2) - nBef) + ") / " + yInput[medianClassIndex] + ") X " + c + "\n" +
+                "\t= " + xInput.getLCL(medianClassIndex) + " + (" + (((n/2) - nBef)) / yInput[medianClassIndex] + ") X " + c + "\n" +
+                "\t= " + xInput.getLCL(medianClassIndex) + " + " + ((((n/2) - nBef)) / yInput[medianClassIndex]) * c + "\n" +
+                "\t= " + (xInput.getLCL(medianClassIndex) + ((((n/2) - nBef)) / yInput[medianClassIndex]) * c);
+
+        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
+    }
+
+    public static String modeStep(String xList, String yList, XInput xInput, int[] yInput) {
+        String info, init, step1, step2, step3;
+
+        double del1, del2, result, c, lMode;
+        int highestF, highestFIndex;
+
+        // find highest frequency to obtain modal class
+        highestF = 0;
+        highestFIndex = 0;
+        for(int x=0 ; x<yInput.length ; x++) {
+            if(yInput[x] > highestF) {
+                highestF = yInput[x];
+                highestFIndex = x;
+            }
+        }
+
+        // find lower class boundary
+        lMode = xInput.getLCB(highestFIndex);
+
+        // find delta 1 (diff mode f & f before it)
+        del1 = yInput[highestFIndex] - yInput[highestFIndex-1];
+
+        // find delta 2 (diff between mode f & f after it)
+        del2 = yInput[highestFIndex] - yInput[highestFIndex+1];
+
+        // find class size
+        c = xInput.getClassWidth();
+
+        // calculate
+        result = lMode + ((del1 / (del1 + del2)) * c);
+
+        info = "Mode = Lmode + (" + Html.fromHtml("&Delta;") + "1 / (" + Html.fromHtml("&Delta;") + "1 + " + Html.fromHtml("&Delta;") + "2)) X C\n" +
+                "\tLmode = Lower class boundary\n" +
+                "\t" + Html.fromHtml("&Delta;") + "1 = Difference between the frequency of the modal class and frequency before it\n" +
+                "\t" + Html.fromHtml("&Delta;") + "2 = Difference between the frequency of the modal class and frequency after it\n" +
+                "\tC = Class size\n" +
+                "\t\t= UCB-LCB";
+        init = "Find highest frequency to find modal class\n" +
+                "\tHighest frequency = " + highestF + "\n" +
+                "\tModal class = " + xInput.getLCL(highestFIndex) + "-" + xInput.getUCB(highestFIndex);
+        step1 = "Mode = Lmode + (" + Html.fromHtml("&Delta;") + "1 / (" + Html.fromHtml("&Delta;") + "1 + " + Html.fromHtml("&Delta;") + "2)) X C\n" +
+                "\tLmode = " + lMode + "\n" +
+                "\t" + Html.fromHtml("&Delta;") + "1 = " + del1 + "\n" +
+                "\t" + Html.fromHtml("&Delta;") + "2 = " + del2 + "\n" +
+                "\tC = Class size\n" +
+                "\t\t= UCB-LCB\n" +
+                "\t\t= " + xInput.getUCB(highestFIndex) + " - " + xInput.getLCB(highestFIndex) + "\n" +
+                "\t\t= " + c;
+        step2 = "Mode = " + lMode + " + (" + del1 + " / (" + del1 + " + " + del2 + ")) X " + c + "\n" +
+                "\t= " + lMode + " + (" + del1 + " / (" + (del1 + del2) + ")) X " + c + "\n" +
+                "\t= " + lMode + " + " + del1 / (del1 + del2) + " X " + c + "\n" +
+                "\t= " + lMode + " + " + ((del1 / (del1 + del2) * c)) + "\n" +
+                "\t= " + (lMode + (del1 / (del1 + del2) * c));
+
+        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
+    }
     // ---------------------------------------------------------------------------------------------
 
     //  asnwer method ------------------------------------------------------------------------------
     public static String meanAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mean(xInput, yInput)); }
+    public static String medianAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(median(xInput, yInput)); }
+    public static String modeAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mode(xInput, yInput)); }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

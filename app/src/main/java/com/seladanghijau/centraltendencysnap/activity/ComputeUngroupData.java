@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seladanghijau.centraltendencysnap.R;
-import com.seladanghijau.centraltendencysnap.provider.Calculator;
+import com.seladanghijau.centraltendencysnap.provider.CalculatorUngroupData;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ComputeUngroupData extends AppCompatActivity {
 
     // vars
     int[] ungroupData;
-    Calculator calculator;
+    CalculatorUngroupData calculator;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +62,7 @@ public class ComputeUngroupData extends AppCompatActivity {
 
     private void initVars() {
         ungroupData = getIntent().getIntArrayExtra("ungroup-data");
-        calculator = new Calculator(this, ungroupData);
+        calculator = new CalculatorUngroupData(this, ungroupData);
 
         double mean = calculator.mean();
         int median = calculator.median();
@@ -77,13 +77,17 @@ public class ComputeUngroupData extends AppCompatActivity {
         tvQuartile.setText("Quartile :" +
                 "\n\tFirst Quartile (Q1): " + calculator.firstQuartile() +
                 "\n\tThird Quartile (Q3): " + calculator.thirdQuartile());
-        tvMode.setText("Mode: ");
-        for(int x=0 ; x<mode.size() ; x++) {
-            if(x == mode.size()-1)
-                tvMode.append("" + mode.get(x));
-            else
-                tvMode.append(mode.get(x) + ", ");
-        }
+        if(mode != null) {
+            tvMode.setText("Mode: ");
+
+            for(int x=0 ; x<mode.size() ; x++) {
+                if(x == mode.size()-1)
+                    tvMode.append("" + mode.get(x));
+                else
+                    tvMode.append(mode.get(x) + ", ");
+            }
+        } else
+            tvMode.setText("Mode: No mode");
 
         tvMeanStep.setText(calculator.meanStep());
         tvMedianStep.setText(calculator.medianStep());

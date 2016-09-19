@@ -26,13 +26,15 @@
                 android:id="@+id/tvMeanStep"
                 android:textColor="#0000ff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp" />
 
             <TextView
                 android:id="@+id/tvMeanAnswer"
                 android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,13 +53,15 @@
                 android:id="@+id/tvMedianStep"
                 android:textColor="#0000ff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp" />
 
             <TextView
                 android:id="@+id/tvMedianAnswer"
                 android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,13 +80,15 @@
                 android:id="@+id/tvModeStep"
                 android:textColor="#0000ff"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp" />
 
             <TextView
                 android:id="@+id/tvModeAnswer"
                 android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

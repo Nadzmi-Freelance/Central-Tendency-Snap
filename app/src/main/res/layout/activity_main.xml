@@ -13,15 +13,6 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <TextView
-            android:text="Choose operation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
-
         <Button
             android:text="Group Data"
             android:id="@+id/btnGroupData"
@@ -36,7 +27,7 @@
             android:id="@+id/btnUngroupData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:textColor="#ffffff"
             android:background="@drawable/state_button" />
     </LinearLayout>

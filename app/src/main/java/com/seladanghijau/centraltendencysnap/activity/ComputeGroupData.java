@@ -59,12 +59,12 @@ public class ComputeGroupData extends AppCompatActivity {
         tvMeanAnswer.setText(GroupedDataProvider.meanAnswer(xInputList, yInputList));
 
         tvMedianTitle.setText("Median: " + GroupedDataProvider.median(xInputList, yInputList));
-        tvMedianStep.setText("Coming soon...");
-        tvMedianAnswer.setText("Coming soon...");
+        tvMedianStep.setText(GroupedDataProvider.medianStep(xInput, yInput, xInputList, yInputList));
+        tvMedianAnswer.setText(GroupedDataProvider.medianAnswer(xInputList, yInputList));
 
         tvModeTitle.setText("Mode: " + GroupedDataProvider.mode(xInputList, yInputList));
-        tvModeStep.setText("Coming soon...");
-        tvModeAnswer.setText("Coming soon...");
+        tvModeStep.setText(GroupedDataProvider.modeStep(xInput, yInput, xInputList, yInputList));
+        tvModeAnswer.setText(GroupedDataProvider.modeAnswer(xInputList, yInputList));
     }
     // ---------------------------------------------------------------------------------------------
 }
