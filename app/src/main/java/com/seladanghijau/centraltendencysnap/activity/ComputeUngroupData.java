@@ -19,14 +19,12 @@ import java.util.Set;
 
 public class ComputeUngroupData extends AppCompatActivity {
     // views
-    TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance, tvQuartile;
-    TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep, tvQuartileStep;
-    TextView tvMeanAnswer, tvMedianAnswer, tvModeAnswer, tvStandardDeviationAnswer, tvVarianceAnswer, tvQuartileAnswer;
-    ImageView ivWhiskersDiagram;
+    TextView tvMean, tvMedian, tvMode, tvStandardDeviation, tvVariance;
+    TextView tvMeanStep, tvMedianStep, tvModeStep, tvStandardDeviationStep, tvVarianceStep;
+    TextView tvMeanAnswer, tvMedianAnswer, tvModeAnswer, tvStandardDeviationAnswer, tvVarianceAnswer;
 
     // vars
     int[] ungroupData;
-    CalculatorUngroupData calculator;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,40 +41,33 @@ public class ComputeUngroupData extends AppCompatActivity {
         tvMode = (TextView) findViewById(R.id.tvMode);
         tvStandardDeviation = (TextView) findViewById(R.id.tvStandardDeviation);
         tvVariance = (TextView) findViewById(R.id.tvVariance);
-        tvQuartile = (TextView) findViewById(R.id.tvQuartile);
 
         tvMeanStep = (TextView) findViewById(R.id.tvMeanStep);
         tvMedianStep = (TextView) findViewById(R.id.tvMedianStep);
         tvStandardDeviationStep = (TextView) findViewById(R.id.tvStandardDeviationStep);
         tvVarianceStep = (TextView) findViewById(R.id.tvVarianceStep);
         tvModeStep = (TextView) findViewById(R.id.tvModeStep);
-        tvQuartileStep = (TextView) findViewById(R.id.tvQuartileStep);
 
         tvMeanAnswer = (TextView) findViewById(R.id.tvMeanAnswer);
         tvMedianAnswer = (TextView) findViewById(R.id.tvMedianAnswer);
         tvModeAnswer = (TextView) findViewById(R.id.tvModeAnswer);
         tvStandardDeviationAnswer = (TextView) findViewById(R.id.tvStandardDeviationAnswer);
         tvVarianceAnswer = (TextView) findViewById(R.id.tvVarianceAnswer);
-        tvQuartileAnswer = (TextView) findViewById(R.id.tvQuartileAnswer);
     }
 
     private void initVars() {
         ungroupData = getIntent().getIntArrayExtra("ungroup-data");
-        calculator = new CalculatorUngroupData(this, ungroupData);
 
-        double mean = calculator.mean();
-        int median = calculator.median();
-        List<Integer> mode = calculator.mode();
-        double standardDeviation = calculator.standardDeviation();
-        double variance = calculator.variance();
+        double mean = CalculatorUngroupData.mean(ungroupData);
+        int median = CalculatorUngroupData.median(ungroupData);
+        List<Integer> mode = CalculatorUngroupData.mode(ungroupData);
+        double standardDeviation = CalculatorUngroupData.standardDeviation(ungroupData);
+        double variance = CalculatorUngroupData.variance(ungroupData);
 
         tvMean.setText("Mean: " + mean);
         tvMedian.setText("Median: " + median);
         tvStandardDeviation.setText("Standard Deviation: " + standardDeviation);
         tvVariance.setText("Variance: " + variance);
-        tvQuartile.setText("Quartile :" +
-                "\n\tFirst Quartile (Q1): " + calculator.firstQuartile() +
-                "\n\tThird Quartile (Q3): " + calculator.thirdQuartile());
         if(mode != null) {
             tvMode.setText("Mode: ");
 
@@ -89,19 +80,17 @@ public class ComputeUngroupData extends AppCompatActivity {
         } else
             tvMode.setText("Mode: No mode");
 
-        tvMeanStep.setText(calculator.meanStep());
-        tvMedianStep.setText(calculator.medianStep());
-        tvModeStep.setText(calculator.modeStep());
-        tvStandardDeviationStep.setText(calculator.standardDeviationStep());
-        tvVarianceStep.setText(calculator.varianceStep());
-        tvQuartileStep.setText("\n\tQ1:\n" + calculator.firstQuartileStep() + "\n\n\tQ3:\n" + calculator.thirdQuartileStep());
+        tvMeanStep.setText(CalculatorUngroupData.meanStep(ungroupData));
+        tvMedianStep.setText(CalculatorUngroupData.medianStep(ungroupData));
+        tvModeStep.setText(CalculatorUngroupData.modeStep(ungroupData));
+        tvStandardDeviationStep.setText(CalculatorUngroupData.standardDeviationStep(ungroupData));
+        tvVarianceStep.setText(CalculatorUngroupData.varianceStep(ungroupData));
 
-        tvMeanAnswer.setText(calculator.meanAnswer());
-        tvMedianAnswer.setText(calculator.medianAnswer());
-        tvModeAnswer.setText(calculator.modeAnswer());
-        tvStandardDeviationAnswer.setText(calculator.standardDeviationAnswer());
-        tvVarianceAnswer.setText(calculator.varianceAnswer());
-        tvQuartileAnswer.setText(calculator.firstQuartileAnswer() + "\n" + calculator.thirdQuartileAnswer());
+        tvMeanAnswer.setText(CalculatorUngroupData.meanAnswer(ungroupData));
+        tvMedianAnswer.setText(CalculatorUngroupData.medianAnswer(ungroupData));
+        tvModeAnswer.setText(CalculatorUngroupData.modeAnswer(ungroupData));
+        tvStandardDeviationAnswer.setText(CalculatorUngroupData.standardDeviationAnswer(ungroupData));
+        tvVarianceAnswer.setText(CalculatorUngroupData.varianceAnswer(ungroupData));
     }
     // ---------------------------------------------------------------------------------------------
 

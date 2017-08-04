@@ -13,20 +13,10 @@ import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by seladanghijau on 15/8/2016.
- */
+
 public class CalculatorUngroupData {
-    private Context context;
-    private int[] ungroupData;
-
-    public CalculatorUngroupData(Context context, int[] ungroupData) {
-        this.context = context;
-        this.ungroupData = ungroupData;
-    }
-
     // operations ----------------------------------------------------------------------------------
-    public double mean() {
+    public static double mean(int[] ungroupData) {
         int[] tempData;
         int sum;
 
@@ -39,11 +29,11 @@ public class CalculatorUngroupData {
         return (sum / tempData.length);
     }
 
-    public int median() {
+    public static int median(int[] ungroupData) {
         return convertToInt(Math.ceil(new DescriptiveStatistics(convertToDoubleArray(ungroupData)).getPercentile(50.0)));
     }
 
-    public List<Integer> mode() {
+    public static List<Integer> mode(int[] ungroupData) {
         List<Integer> maxValues;
         int maxCount;
 
@@ -90,48 +80,17 @@ public class CalculatorUngroupData {
         return maxValues;
     }
 
-    public double standardDeviation() {
+    public static double standardDeviation(int[] ungroupData) {
         return new StandardDeviation().evaluate(convertToDoubleArray(ungroupData));
     }
 
-    public double variance() {
-        return Math.pow(standardDeviation(), 2);
-    }
-
-    // FIXME: 2/9/2016 - buat function utk 1st & 3rd quartile serta step & answer
-    public double firstQuartile() {
-        int n, posQ1;
-        double valQ1, remainder, pos;
-        int[] tempData;
-
-        tempData = ungroupData.clone();
-        n = tempData.length;
-        pos = (n + 1) / 4.0;
-        posQ1 = (int) pos; // get position of q1
-        remainder = pos - posQ1; // get remainder of pos Q1
-        valQ1 = tempData[posQ1-1] + (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) * remainder; // find value of Q1
-
-        return valQ1;
-    }
-
-    public double thirdQuartile() {
-        int n, posQ3;
-        double valQ3, remainder, pos;
-        int[] tempData;
-
-        tempData = ungroupData.clone();
-        n = tempData.length;
-        pos = 3 * (n + 1) / 4.0;
-        posQ3 = (int) pos; // get position of q3
-        remainder = pos - posQ3; // get remainder of pos Q3
-        valQ3 = tempData[posQ3-1] + (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) * remainder; // find value of Q3
-
-        return valQ3;
+    public static double variance(int[] ungroupData) {
+        return Math.pow(standardDeviation(ungroupData), 2);
     }
     // ---------------------------------------------------------------------------------------------
 
     // step methods --------------------------------------------------------------------------------
-    public String meanStep() {
+    public static String meanStep(int[] ungroupData) {
         String info, init, step1;
         String xList, sumXList;
         int n, sumX;
@@ -166,7 +125,7 @@ public class CalculatorUngroupData {
         return info + "\n\n" + init + "\n\n" + step1;
     }
 
-    public String medianStep() {
+    public static String medianStep(int[] ungroupData) {
         String init, step1, step2, step3, step4;
         String xList, sortedXList;
         int varN;
@@ -176,7 +135,7 @@ public class CalculatorUngroupData {
         sortedXList = "";
         varN = ungroupData.length;
         varX = ungroupData.clone();
-        sortedX = bubbleSortAscending();
+        sortedX = bubbleSortAscending(ungroupData);
         for(int x=0 ; x<varN ; x++) {
             if(x == varN-1) {
                 xList += "" + varX[x];
@@ -209,7 +168,7 @@ public class CalculatorUngroupData {
         return init + "\n\n" + step1 + "\n\n" + step2 + "\n" + step3 + "\n\n" + step4;
     }
 
-    public String modeStep() {
+    public static String modeStep(int[] ungroupData) {
         String info, init;
         String xList;
         int[] varX;
@@ -229,7 +188,7 @@ public class CalculatorUngroupData {
         return info + "\n\n" + init;
     }
 
-    public String standardDeviationStep() {
+    public static String standardDeviationStep(int[] ungroupData) {
         String formula, xList, sumXList, sumX2List;
         String info, init, step1, step2;
         int varN, sumX, sumX2, sum2X;
@@ -299,16 +258,16 @@ public class CalculatorUngroupData {
                             ") / " + varN +
                     ")" +
                 "]";
-        step2 = "\tS = " + standardDeviation();
+        step2 = "\tS = " + standardDeviation(ungroupData);
 
         return info + "\n\n" + init + "\n\n" + step1 + "\n" + step2;
     }
 
-    public String varianceStep() {
+    public static String varianceStep(int[] ungroupData) {
         String info, init, answer;
         double S;
 
-        S = standardDeviation();
+        S = standardDeviation(ungroupData);
 
         info = "\tS = Standard Deviation\n" +
                 "\tVariance = S^2";
@@ -317,101 +276,34 @@ public class CalculatorUngroupData {
 
         return info + "\n\n" + init;
     }
+    // ---------------------------------------------------------------------------------------------
 
-    // FIXME: 3/9/2016 - create method for step
-    public String firstQuartileStep() {
-        String xList;
-        String info, init, step1, step2;
-        int[] tempData;
-        int n, posQ1;
-        double pos, remainder;
-
-        tempData = ungroupData.clone();
-        n = tempData.length;
-        pos = (n + 1) / 4.0;
-        posQ1 = (int) pos;
-        remainder = pos - posQ1;
-
-        xList = "";
-        for(int x=0 ; x<tempData.length ; x++) {
-            if(x == tempData.length-1)
-                xList += tempData[x];
-            else
-                xList += tempData[x] + ", ";
-        }
-
-        info = "\t\tPosition Q1 = (n + 1) / 4";
-        init = "\t\tx = " + xList + "\n" +
-                "\t\tn = " + n;
-        step1 = "\t\tPosition Q1 = (n + 1) / 4\n" +
-                "\t\t\t\t\t\t\t\t\t\t= (" + n + " + 1) / 4\n" +
-                "\t\t\t\t\t\t\t\t\t\t= " + pos;
-        step2 = "\t\tQ1 = " + tempData[posQ1-1] + " + (" + tempData[(posQ1-1) + 1] + " - " + tempData[posQ1-1] + ") X " + remainder + "\n" +
-                "\t\t\t\t = " + tempData[posQ1-1] + " + (" +  (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) + ") X " + remainder + "\n" +
-                "\t\t\t\t = " + (tempData[posQ1-1] + (tempData[(posQ1-1) + 1] - tempData[posQ1-1]) * remainder);
-
-        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
-    }
-
-    public String thirdQuartileStep() {
-        String xList;
-        String info, init, step1, step2;
-        int[] tempData;
-        int n, posQ3;
-        double pos, remainder;
-
-        tempData = ungroupData.clone();
-        n = tempData.length;
-        pos = (3 * (n + 1)) / 4.0;
-        posQ3 = (int) pos;
-        remainder = pos - posQ3;
-
-        xList = "";
-        for(int x=0 ; x<tempData.length ; x++) {
-            if(x == tempData.length-1)
-                xList += tempData[x];
-            else
-                xList += tempData[x] + ", ";
-        }
-
-        info = "\t\tPosition Q3 = 3(n + 1) / 4";
-        init = "\t\tx = " + xList + "\n" +
-                "\t\tn = " + n;
-        step1 = "\t\tPosition Q3 = 3(n + 1) / 4\n" +
-                "\t\t\t\t\t\t\t\t\t\t= 3(" + n + " + 1) / 4\n" +
-                "\t\t\t\t\t\t\t\t\t\t= " + pos;
-        step2 = "\t\tQ1 = " + tempData[posQ3-1] + " + (" + tempData[(posQ3-1) + 1] + " - " + tempData[posQ3-1] + ") X " + remainder + "\n" +
-                "\t\t\t\t = " + tempData[posQ3-1] + " + (" +  (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) + ") X " + remainder + "\n" +
-                "\t\t\t\t = " + (tempData[posQ3-1] + (tempData[(posQ3-1) + 1] - tempData[posQ3-1]) * remainder);
-
-        return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
-    }
-
-    public String meanAnswer() {
+    // answer methods ------------------------------------------------------------------------------
+    public static String meanAnswer(int[] ungroupData) {
         String answer;
 
-        answer = "\t" + Html.fromHtml("&there4;") + " Mean = " + mean();
+        answer = "\t" + Html.fromHtml("&there4;") + " Mean = " + mean(ungroupData);
 
         return answer;
     }
 
-    public String medianAnswer() {
+    public static String medianAnswer(int[] ungroupData) {
         String answer;
 
-        answer = "\t" + Html.fromHtml("&there4;") + " Median = " + median();
+        answer = "\t" + Html.fromHtml("&there4;") + " Median = " + median(ungroupData);
 
         return answer;
     }
 
-    public String modeAnswer() {
+    public static String modeAnswer(int[] ungroupData) {
         String modeList, answer;
 
         modeList = "";
-        if(mode() != null) {
-            for(int x=0 ; x<mode().size() ; x++) {
-                Integer varMode = mode().get(x);
+        if(mode(ungroupData) != null) {
+            for(int x=0 ; x<mode(ungroupData).size() ; x++) {
+                Integer varMode = mode(ungroupData).get(x);
 
-                if(x == mode().size()-1)
+                if(x == mode(ungroupData).size()-1)
                     modeList += varMode;
                 else
                     modeList += varMode + ", ";
@@ -424,43 +316,27 @@ public class CalculatorUngroupData {
         return answer;
     }
 
-    public String standardDeviationAnswer() {
+    public static String standardDeviationAnswer(int[] ungroupData) {
         String answer;
 
-        answer = "\t" + Html.fromHtml("&there4;") + " S = " + standardDeviation();
+        answer = "\t" + Html.fromHtml("&there4;") + " S = " + standardDeviation(ungroupData);
 
         return answer;
     }
 
-    public String varianceAnswer() {
+    public static String varianceAnswer(int[] ungroupData) {
         String answer;
         double S2;
 
-        S2 = variance();
+        S2 = variance(ungroupData);
         answer = "\t" + Html.fromHtml("&there4;") + " Variance = " + S2;
-
-        return answer;
-    }
-
-    public String firstQuartileAnswer() {
-        String answer;
-
-        answer = "\t" + Html.fromHtml("&there4;") + " Q1 = " + firstQuartile();
-
-        return answer;
-    }
-
-    public String thirdQuartileAnswer() {
-        String answer;
-
-        answer = "\t" + Html.fromHtml("&there4;") + " Q3 = " + thirdQuartile();
 
         return answer;
     }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------
-    public int[] bubbleSortAscending() {
+    private static int[] bubbleSortAscending(int[] ungroupData) {
         int[] tempData;
 
         tempData = ungroupData.clone();
@@ -478,31 +354,16 @@ public class CalculatorUngroupData {
         return tempData;
     }
 
-    public double convertToDouble(int x) {
-        return ((double) x);
-    }
-
-    public int convertToInt(double x) {
+    private static int convertToInt(double x) {
         return ((int) x);
     }
 
-    public double[] convertToDoubleArray(int[] no) {
+    private static double[] convertToDoubleArray(int[] no) {
         double[] tempData;
 
         tempData = new double[no.length];
         for(int x=0 ; x<no.length ; x++) {
             tempData[x] = (double) no[x];
-        }
-
-        return tempData;
-    }
-
-    public int[] convertToIntArray(double[] no) {
-        int[] tempData;
-
-        tempData = new int[no.length];
-        for(int x=0 ; x<no.length ; x++) {
-            tempData[x] = (int) no[x];
         }
 
         return tempData;

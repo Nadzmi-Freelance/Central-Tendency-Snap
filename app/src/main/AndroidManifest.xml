@@ -8,15 +8,16 @@
 
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera2.autofocus" />
-    <uses-feature android:name="android.hardware.camera2.flash"
+    <uses-feature
+        android:name="android.hardware.camera2.flash"
         android:required="false" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:largeHeap="true"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -25,10 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.GroupedData"></activity>
-        <activity android:name=".activity.UngroupedData"></activity>
-        <activity android:name=".activity.ComputeGroupData"></activity>
-        <activity android:name=".activity.ComputeUngroupData"></activity>
+        <activity android:name=".activity.GroupedData" />
+        <activity android:name=".activity.UngroupedData" />
+        <activity android:name=".activity.ComputeGroupDataMT" />
+        <activity android:name=".activity.ComputeUngroupData" />
+        <activity android:name=".activity.ComputeGroupDataMV"></activity>
     </application>
 
 </manifest>

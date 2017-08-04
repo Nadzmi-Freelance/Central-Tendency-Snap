@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.seladanghijau.centraltendencysnap.R;
@@ -119,11 +120,10 @@ public class UngroupedData extends AppCompatActivity implements OCRManager, View
                 String[] tokenizedResult;
 
                 result = OCRProvider.getTokenizedString(etResult.getText().toString());
-                tokenizedResult = result.trim().split(", ");
+                tokenizedResult = result.trim().split(",");
                 ungroupDatas = new int[tokenizedResult.length];
-                for(int x=0 ; x<tokenizedResult.length ; x++) {
-                    ungroupDatas[x] = Integer.parseInt(tokenizedResult[x]);
-                }
+                for(int x=0 ; x<tokenizedResult.length ; x++)
+                    ungroupDatas[x] = Integer.parseInt(tokenizedResult[x].trim());
 
                 startActivity(new Intent(this, ComputeUngroupData.class).putExtra("ungroup-data", ungroupDatas));
                 break;
