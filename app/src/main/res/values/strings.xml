@@ -2,6 +2,16 @@
     <string name="app_name">Central Tendency Snapshot</string>
 
     <!-- group data -->
+    <!-- labels -->
+    <string name="mean">Mean</string>
+    <string name="median">Median</string>
+    <string name="mode">Mode</string>
+    <string name="stdDev">Standard Deviation</string>
+    <string name="var">Variance</string>
+    <string name="cv">Coefficient Variance</string>
+    <string name="set_1">Set 1</string>
+    <string name="set_2">Set 2</string>
+
     <!-- group data forms -->
     <string name="input_info">
         <b>
@@ -36,4 +46,7 @@
     <string name="popup_message">Do you want to calculate Central Tendency or Variance?</string>
     <string name="goto_mt">Central Tendency</string>
     <string name="goto_mv">Variance</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

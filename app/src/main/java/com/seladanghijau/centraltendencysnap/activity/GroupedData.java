@@ -62,11 +62,10 @@ public class GroupedData extends AppCompatActivity implements View.OnClickListen
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent computeGroupDataMT;
 
-                        computeGroupDataMT = new Intent(getApplicationContext(), ComputeGroupDataMT.class);
-
                         // carry data to MT
-                        computeGroupDataMT.putExtra("xInputList", xInputList);
-                        computeGroupDataMT.putExtra("yInputList", yInputList);
+                        computeGroupDataMT = new Intent(getApplicationContext(), ComputeGroupDataMT.class)
+                                .putExtra("xInputList", xInputList)
+                                .putExtra("yInputList", yInputList);
 
                         startActivity(computeGroupDataMT); // goto MT
                     }
@@ -76,11 +75,10 @@ public class GroupedData extends AppCompatActivity implements View.OnClickListen
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent computeGroupDataMV;
 
-                        computeGroupDataMV = new Intent(getApplicationContext(), ComputeGroupDataMV.class);
-
                         // carry data to MV
-                        computeGroupDataMV.putExtra("xInputList", xInputList);
-                        computeGroupDataMV.putExtra("yInputList", yInputList);
+                        computeGroupDataMV = new Intent(getApplicationContext(), ComputeGroupDataMV.class)
+                                .putExtra("xInputList", xInputList)
+                                .putExtra("yInputList", yInputList);
 
                         startActivity(computeGroupDataMV); // goto MV
                     }

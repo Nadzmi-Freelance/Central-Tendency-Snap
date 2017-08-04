@@ -30,7 +30,8 @@
         <activity android:name=".activity.UngroupedData" />
         <activity android:name=".activity.ComputeGroupDataMT" />
         <activity android:name=".activity.ComputeUngroupData" />
-        <activity android:name=".activity.ComputeGroupDataMV"></activity>
+        <activity android:name=".activity.ComputeGroupDataMV" />
+        <activity android:name=".activity.GroupDataCVSet2"></activity>
     </application>
 
 </manifest>

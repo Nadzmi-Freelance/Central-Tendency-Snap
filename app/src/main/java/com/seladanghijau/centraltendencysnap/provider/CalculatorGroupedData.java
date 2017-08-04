@@ -106,6 +106,16 @@ public class CalculatorGroupedData {
 
         return result;
     }
+
+    /**
+    public static double standardDeviation(XInput xInput, int[] yInput) {
+
+    }
+
+    public static double varaince(XInput xInput, int[] yInput) {
+
+    }
+     */
     // ---------------------------------------------------------------------------------------------
 
     // steps methods -------------------------------------------------------------------------------
@@ -293,12 +303,27 @@ public class CalculatorGroupedData {
 
         return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
     }
+
+    /**
+    public static String standardDeviationStep(String xList, String yList, XInput xInput, int[] yInput) {
+
+    }
+
+    public static String varianceStep(String xList, String yList, XInput xInput, int[] yInput) {
+
+    }
+    */
     // ---------------------------------------------------------------------------------------------
 
     //  asnwer method ------------------------------------------------------------------------------
     public static String meanAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mean(xInput, yInput)); }
     public static String medianAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(median(xInput, yInput)); }
     public static String modeAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mode(xInput, yInput)); }
+
+    /**
+    public static String standardDeviationAnswer(XInput xInput, int[] yInput) {}
+    public static String varianceAnswer(XInput xInput, int[] yInput) {}
+    */
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------
