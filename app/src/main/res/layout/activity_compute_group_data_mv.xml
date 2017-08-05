@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context="com.seladanghijau.centraltendencysnap.activity.ComputeGroupDataMT">
 
     <LinearLayout
@@ -113,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:background="@drawable/state_button"/>
+                android:background="@drawable/state_button" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.seladanghijau.centraltendencysnap.R;
+import com.seladanghijau.centraltendencysnap.dto.XInput;
+import com.seladanghijau.centraltendencysnap.provider.CalculatorGroupedData;
 
 public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClickListener {
     // views var
@@ -18,13 +20,20 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
 
     // standard vars
     double cvSet1;
+    String xInput, yInput;
+    XInput xInputList;
+    int[] yInputList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compute_group_data_mv);
 
+        initVars();
         initViews();
+        initListener();
+        mainProcess();
     }
 
     // initialization ------------------------------------------------------------------------------
@@ -39,9 +48,36 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
         tvCVStep = (TextView) findViewById(R.id.tvCVStep);
         tvCVAnswer = (TextView) findViewById(R.id.tvCVAnswer);
         btnSet2 = (Button) findViewById(R.id.btnSet2);
+    }
 
-        // init listener
+    private void initVars() {
+        xInput = getIntent().getStringExtra("xInputList");
+        yInput = getIntent().getStringExtra("yInputList");
+
+        xInputList = CalculatorGroupedData.extractXInput(xInput);
+        yInputList = CalculatorGroupedData.extractYInput(yInput);
+    }
+
+    private void initListener() {
         btnSet2.setOnClickListener(this);
+    }
+    // ---------------------------------------------------------------------------------------------
+
+    // process -------------------------------------------------------------------------------------
+    private void mainProcess() {
+        /*
+        tvStandardDeviationTitle.setText();
+        tvStandardDeviationStep.setText();
+        tvStandardDeviationAnswer.setText();
+
+        tvVarianceTitle.setText();
+        tvVarianceStep.setText();
+        tvVarianceAnswer.setText();
+
+        tvCVTitle.setText();
+        tvCVStep.setText();
+        tvCVAnswer.setText();
+        */
     }
     // ---------------------------------------------------------------------------------------------
 

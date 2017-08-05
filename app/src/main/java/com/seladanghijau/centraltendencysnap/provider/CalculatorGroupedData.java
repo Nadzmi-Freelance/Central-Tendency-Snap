@@ -6,6 +6,7 @@ import com.seladanghijau.centraltendencysnap.dto.XInput;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 
 /**
  * Created by seladanghijau on 14/9/2016.
@@ -107,15 +108,53 @@ public class CalculatorGroupedData {
         return result;
     }
 
-    /**
     public static double standardDeviation(XInput xInput, int[] yInput) {
+        double[] midpoint, fx, dev2, fDev2;
+        double stdev, cumFDev2, cumF_1;
 
+        // initialize
+        midpoint = new double[yInput.length];
+        fx = new double[yInput.length];
+        dev2 = new double[yInput.length];
+        fDev2 = new double[yInput.length];
+
+        // calc each data --->>
+        // midpoint
+        for(int x=0 ; x<yInput.length ; x++)
+            midpoint[x] = (xInput.getLCL(x) + xInput.getUCL(x)) / 2;
+
+        // fx
+        for(int x=0 ; x<yInput.length ; x++)
+            fx[x] = midpoint[x] * yInput[x];
+
+        // dev
+        for(int x=0 ; x<yInput.length ; x++)
+            dev2[x] = Math.pow((midpoint[x] - mean(xInput, yInput)), 2);
+
+        // fdev2
+        for(int x=0 ; x<yInput.length ; x++)
+            fDev2[x] = yInput[x] * dev2[x];
+
+        // calc cummulatives --->>
+        // cumFDev2
+        cumFDev2 = 0;
+        for(int x=0 ; x<yInput.length ; x++)
+            cumFDev2 += yInput[x] * dev2[x];
+
+        // cumF_1
+        cumF_1 = 0;
+        for(int x=0 ; x<yInput.length ; x++)
+            cumF_1 += yInput[x];
+        cumF_1 -= 1;
+
+        stdev = Math.sqrt(cumFDev2 / cumF_1); // calculate standard deviation --->>
+
+        return stdev;
     }
 
-    public static double varaince(XInput xInput, int[] yInput) {
-
+    public static double variance(XInput xInput, int[] yInput) {
+        return Math.pow(standardDeviation(xInput, yInput), 2);
     }
-     */
     // ---------------------------------------------------------------------------------------------
 
     // steps methods -------------------------------------------------------------------------------
