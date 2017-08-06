@@ -348,7 +348,95 @@ public class CalculatorGroupedData {
     }
 
     public static String standardDeviationStep(String xList, String yList, XInput xInput, int[] yInput) {
-        return "";
+        String info, formula, init;
+        String step1, step2;
+
+        String listF2X, listFX2, listMidpoints;
+        double sumF2X, sumFX2;
+        double[] midpoints;
+        int nCount;
+
+        // initialization
+        nCount = xInput.getSize();
+        midpoints = xInput.getMidpoint();
+
+        // steps
+        listMidpoints = "";
+        for(int x=0 ; x<yInput.length ; x++) {
+            listMidpoints += midpoints[x];
+
+            if((x+1) != yInput.length)
+                listMidpoints += ", ";
+        }
+
+        listF2X = "";
+        for(int x=0 ; x<yInput.length ; x++) {
+            listF2X += "(" + yInput[x] + "*" + midpoints[x] + "^2)";
+
+            if((x+1) != yInput.length)
+                listF2X += " + ";
+        }
+
+        listFX2 = "";
+        for(int x=0 ; x<yInput.length ; x++) {
+            listFX2 += "(" + yInput[x] + "*" + midpoints[x] + ")^2";
+
+            if((x+1) != yInput.length)
+                listFX2 += " + ";
+        }
+
+        // summation
+        sumF2X = 0;
+        for(int x=0 ; x<yInput.length ; x++)
+            sumF2X += yInput[x] * Math.pow(midpoints[x], 2);
+
+        sumFX2 = 0;
+        for(int x=0 ; x<yInput.length ; x++)
+            sumFX2 += Math.pow((yInput[x] * midpoints[x]), 2);
+
+        // calc steps
+        formula = "S = " + Html.fromHtml("&radic;") +
+                "[" +
+                    "(1/(n - 1))" +
+                    " * " +
+                    "(" +
+                        "(" +
+                            Html.fromHtml("&sum;") + "(f*x^2)" +
+                            " - " +
+                            "(" +
+                                Html.fromHtml("&sum;") + "((f*x)^2)" +
+                        ") / n" +
+                    ")" +
+                "]";
+
+        info = "\t" + formula + "\n" +
+                "\tx = midpoints of x";
+
+        init = "\tx = " + xList + "\n" +
+                "\tx midpoint = " + listMidpoints + "\n" +
+                "\ty = " + yList + "\n" +
+                "\tn = " + nCount + "\n" +
+                "\t" + Html.fromHtml("&sum;") + "(f*x^2) = " + listF2X + "\n" +
+                "\t\t  = " + sumF2X + "\n" +
+                "\t" + Html.fromHtml("&sum;") + "((f*x)^2) = " + listFX2 + "\n" +
+                "\t\t\t   = " + sumFX2;
+
+        step1 = "S = " + Html.fromHtml("&radic;") +
+                "[" +
+                    "(1/(" + nCount + " - 1))" +
+                    " * " +
+                    "(" +
+                        "(" +
+                            sumF2X +
+                            " - " +
+                            "(" +
+                                sumFX2 +
+                            ") / " + nCount +
+                    ")" +
+                "]";
+        step2 = " = " + standardDeviation(xInput, yInput);
+
+        return info + "\n\n" + init + "\n\n" + step1 + "\n" + step2;
     }
 
     public static String varianceStep(String xList, String yList, XInput xInput, int[] yInput) {

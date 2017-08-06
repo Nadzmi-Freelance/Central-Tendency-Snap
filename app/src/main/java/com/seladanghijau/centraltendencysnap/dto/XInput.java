@@ -5,7 +5,7 @@ package com.seladanghijau.centraltendencysnap.dto;
  */
 public class XInput {
     private int[] lcl, ucl;
-    private double[] lcb, ucb;
+    private double[] lcb, ucb, midpoint;
     private int size;
     private double classWidth;
 
@@ -13,6 +13,7 @@ public class XInput {
     public XInput() {
         lcl = null;
         ucl = null;
+        size = 0;
 
         setLCB();
         setUCB();
@@ -22,10 +23,12 @@ public class XInput {
     public XInput(int[] lcl, int[] ucl) {
         this.lcl = lcl;
         this.ucl = ucl;
+        this.size = ucl.length;
 
         setLCB();
         setUCB();
         setClassWidth();
+        setMidpoint();
     }
 
     // getter
@@ -33,14 +36,15 @@ public class XInput {
     public int getUCL(int x) { return ucl[x]; }
     public double getLCB(int x) { return lcb[x]; }
     public double getUCB(int x) { return ucb[x]; }
-    public int getSize() { return ucl.length; }
+    public int getSize() { return size; }
     public double getClassWidth() { return  classWidth; }
+    public double[] getMidpoint() { return midpoint; }
 
     // setter
-    public void setLCL(int[] lcl) { this.lcl = lcl; }
-    public void setUCL(int[] ucl) { this.ucl = ucl; }
+    private void setLCL(int[] lcl) { this.lcl = lcl; }
+    private void setUCL(int[] ucl) { this.ucl = ucl; }
 
-    public void setLCB() {
+    private void setLCB() {
         lcb = new double[lcl.length];
 
         if(ucl[0] != lcl[1]) {
@@ -54,7 +58,7 @@ public class XInput {
         }
     }
 
-    public void setUCB() {
+    private void setUCB() {
         ucb = new double[ucl.length];
 
         if(ucl[0] != lcl[1]) {
@@ -68,7 +72,14 @@ public class XInput {
         }
     }
 
-    public void setClassWidth() {
+    private void setClassWidth() {
         classWidth = ucb[0] - lcb[0];
+    }
+
+    private void setMidpoint() {
+        midpoint = new double[size];
+
+        for(int x=0 ; x<size ; x++)
+            midpoint[x] = (Double.parseDouble("" + ucl[x]) + Double.parseDouble("" + lcl[x])) / 2;
     }
 }
