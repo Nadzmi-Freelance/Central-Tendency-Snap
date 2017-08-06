@@ -352,7 +352,17 @@ public class CalculatorGroupedData {
     }
 
     public static String varianceStep(String xList, String yList, XInput xInput, int[] yInput) {
-        return "";
+        String info, init;
+        double S;
+
+        S = standardDeviation(xInput, yInput);
+
+        info = "\tS = Standard Deviation\n" +
+                "\tVariance = S^2";
+        init = "\tS = " + S + "\n" +
+                "\tS^2 = " + Math.pow(S, 2);
+
+        return info + "\n\n" + init;
     }
 
     public static String cvStep(String xList, String yList, XInput xInput, int[] yInput) {

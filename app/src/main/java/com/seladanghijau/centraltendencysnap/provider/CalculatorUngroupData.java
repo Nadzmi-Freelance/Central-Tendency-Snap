@@ -264,7 +264,7 @@ public class CalculatorUngroupData {
     }
 
     public static String varianceStep(int[] ungroupData) {
-        String info, init, answer;
+        String info, init;
         double S;
 
         S = standardDeviation(ungroupData);
