@@ -189,6 +189,15 @@ public class CalculatorGroupedData {
 
         return Double.parseDouble(df.format((s / x) * 100));
     }
+
+    public static double cv(double stdev, double mean) {
+        DecimalFormat df;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return Double.parseDouble(df.format((stdev / mean) * 100));
+    }
     // ---------------------------------------------------------------------------------------------
 
     // steps methods -------------------------------------------------------------------------------
@@ -494,10 +503,27 @@ public class CalculatorGroupedData {
 
         // steps
         formula = "(S / " + Html.fromHtml("x&#772;") + ") * 100";
-        info = "\tCoefficient Variance = " + formula;
+        info = "\tS = Standard deviation" + "\n" +
+                "\t" + Html.fromHtml("x&#772;") + " = mean" + "\n" +
+                "\tCoefficient Variance(CV) = " + formula;
         init = "\tCV = (" + S + " / " + X + ") * 100";
         step1 = "\t = (" + (S / X) + ") * 100";
-        step2 = "\t = " + cv(xInput, yInput);
+        step2 = "\t = " + ((S / X) * 100);
+
+        return info + "\n\n" + init + "\n" + step1 + "\n" + step2;
+    }
+
+    public static String cvStep(double stdev, double mean) {
+        String info, init, formula;
+        String step1, step2;
+
+        formula = "(S / " + Html.fromHtml("x&#772;") + ") * 100";
+        info = "\tS = Standard deviation" + "\n" +
+                "\t" + Html.fromHtml("x&#772;") + " = mean" + "\n" +
+                "\tCoefficient Variance(CV) = " + formula;
+        init = "\tCV = (" + stdev + " / " + mean + ") * 100";
+        step1 = "\t = (" + (stdev / mean) + ") * 100";
+        step2 = "\t = " + ((stdev / mean) * 100);
 
         return info + "\n\n" + init + "\n" + step1 + "\n" + step2;
     }
@@ -510,6 +536,7 @@ public class CalculatorGroupedData {
     public static String standardDeviationAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(standardDeviation(xInput, yInput)); }
     public static String varianceAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(variance(xInput, yInput)); }
     public static String cvAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(xInput, yInput)); }
+    public static String cvAnswer(double stdev, double mean) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(stdev, mean)); }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

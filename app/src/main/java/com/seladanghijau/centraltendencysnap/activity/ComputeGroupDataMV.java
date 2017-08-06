@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.seladanghijau.centraltendencysnap.R;
@@ -16,11 +18,13 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
     // views var
     TextView tvStandardDeviationTitle, tvStandardDeviationStep, tvStandardDeviationAnswer;
     TextView tvVarianceTitle, tvVarianceStep, tvVarianceAnswer;
-    TextView tvCVTitle, tvCVStep, tvCVAnswer;
-    Button btnSet2;
+    TextView tvCVTitle, tvCVStep, tvCVAnswer, tvCV2Title, tvCV2Step, tvCV2Answer;
+    Button btnSet2, btnCompareCV;
+    LinearLayout llCVSet2, llInputCVSet2;
+    EditText set2Mean, set2StandardDev, set2Variance;
 
     // standard vars
-    double cvSet1;
+    double cvSet1, cvSet2;
     String xInput, yInput;
     XInput xInputList;
     int[] yInputList;
@@ -48,7 +52,16 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
         tvCVTitle = (TextView) findViewById(R.id.tvCVTitle);
         tvCVStep = (TextView) findViewById(R.id.tvCVStep);
         tvCVAnswer = (TextView) findViewById(R.id.tvCVAnswer);
+        tvCV2Title = (TextView) findViewById(R.id.tvCV2Title);
+        tvCV2Step = (TextView) findViewById(R.id.tvCV2Step);
+        tvCV2Answer = (TextView) findViewById(R.id.tvCV2Answer);
         btnSet2 = (Button) findViewById(R.id.btnSet2);
+        btnCompareCV = (Button) findViewById(R.id.btnCompareCV);
+        llCVSet2 = (LinearLayout) findViewById(R.id.llCVSet2);
+        llInputCVSet2 = (LinearLayout) findViewById(R.id.llInputCVSet2);
+        set2Mean = (EditText) findViewById(R.id.set2Mean);
+        set2StandardDev = (EditText) findViewById(R.id.set2StandardDev);
+        set2Variance = (EditText) findViewById(R.id.set2Variance);
     }
 
     private void initVars() {
@@ -61,11 +74,15 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
 
     private void initListener() {
         btnSet2.setOnClickListener(this);
+        btnCompareCV.setOnClickListener(this);
     }
     // ---------------------------------------------------------------------------------------------
 
     // process -------------------------------------------------------------------------------------
     private void mainProcess() {
+        llCVSet2.setVisibility(View.GONE);
+        llInputCVSet2.setVisibility(View.GONE);
+
         tvStandardDeviationTitle.setText("Standard Deviation: " + CalculatorGroupedData.standardDeviation(xInputList, yInputList));
         tvStandardDeviationStep.setText(CalculatorGroupedData.standardDeviationStep(xInput, yInput, xInputList, yInputList));
         tvStandardDeviationAnswer.setText(CalculatorGroupedData.standardDeviationAnswer(xInputList, yInputList));
@@ -85,15 +102,49 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSet2:
-                Intent gotoSet2CV;
+                if(btnSet2.isShown())
+                    btnSet2.setVisibility(View.GONE);
+                if(!llInputCVSet2.isShown())
+                    llInputCVSet2.setVisibility(View.VISIBLE);
+                break;
+            case R.id.btnCompareCV:
+                double mean2, stdev2, variance2;
 
-                // carry cvSet1 to cvSet2 activity
-                gotoSet2CV = new Intent(this, GroupDataCVSet2.class)
-                        .putExtra("cvSet1", cvSet1);
+                if(!llCVSet2.isShown())
+                    llCVSet2.setVisibility(View.VISIBLE);
+                if(llInputCVSet2.isShown())
+                    llInputCVSet2.setVisibility(View.GONE);
 
-                startActivity(gotoSet2CV);
+                // get mean, stdev & var
+                mean2 = Double.parseDouble("" + set2Mean.getText());
+                stdev2 = Double.parseDouble("" + set2StandardDev.getText());
+                variance2 = Double.parseDouble("" + set2Variance.getText());
+
+                // init cvs
+                cvSet1 = CalculatorGroupedData.cv(xInputList, yInputList);
+                cvSet2 = 0;
+
+                // calc cv2
+                if(!("" + set2StandardDev.getText()).isEmpty())
+                    cvSet2 = CalculatorGroupedData.cv(stdev2, mean2);
+                else
+                    cvSet2 = CalculatorGroupedData.cv(Math.sqrt(variance2), mean2);
+
+                tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
+                tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
+                tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!btnSet2.isShown())
+            btnSet2.setVisibility(View.VISIBLE);
+        if(llCVSet2.isShown())
+            llCVSet2.setVisibility(View.GONE);
+        if(llInputCVSet2.isShown())
+            llInputCVSet2.setVisibility(View.GONE);
     }
     // ---------------------------------------------------------------------------------------------
 }

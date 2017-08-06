@@ -11,6 +11,11 @@
     <string name="cv">Coefficient Variance</string>
     <string name="set_1">Set 1</string>
     <string name="set_2">Set 2</string>
+    <string name="compare_cv">Compare Coefficient Variance</string>
+    <string name="cv_input_set2">Input CV for Set 2</string>
+    <string name="hint_mean">Mean</string>
+    <string name="hint_stdev">Standard deviation</string>
+    <string name="hint_variance">Variance</string>
 
     <!-- group data forms -->
     <string name="input_info">
