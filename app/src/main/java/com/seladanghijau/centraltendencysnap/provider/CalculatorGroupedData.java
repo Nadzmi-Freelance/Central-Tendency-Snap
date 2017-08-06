@@ -4,19 +4,23 @@ import android.text.Html;
 
 import com.seladanghijau.centraltendencysnap.dto.XInput;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 
-/**
- * Created by seladanghijau on 14/9/2016.
- */
+
 public class CalculatorGroupedData {
     // calculate methods ---------------------------------------------------------------------------
     public static double mean(XInput xInput, int[] yInput) {
+        DecimalFormat df;
         int[] midpoint;
         int sumFX, totalF;
         double result;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
 
         sumFX = 0;
         totalF = 0;
@@ -29,14 +33,18 @@ public class CalculatorGroupedData {
 
         result = (double) sumFX / totalF;
 
-        return result;
+        return Double.parseDouble(df.format(result));
     }
 
     public static double median(XInput xInput, int[] yInput) {
+        DecimalFormat df;
         int n, medianClassIndex;
         double medianPos, c, medLCB;
         int nBef, medF;
         double result;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
 
         // find median class
         n = 0;
@@ -73,12 +81,16 @@ public class CalculatorGroupedData {
         // find median based on median class
         result = medLCB + (((n / 2.0) - nBef) / medF) * c;
 
-        return result;
+        return Double.parseDouble(df.format(result));
     }
 
     public static double mode(XInput xInput, int[] yInput) {
+        DecimalFormat df;
         double del1, del2, result, c, lMode;
         int highestF, highestFIndex;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
 
         // find highest frequency to obtain modal class
         highestF = 0;
@@ -105,12 +117,16 @@ public class CalculatorGroupedData {
         // calculate
         result = lMode + ((del1 / (del1 + del2)) * c);
 
-        return result;
+        return Double.parseDouble(df.format(result));
     }
 
     public static double standardDeviation(XInput xInput, int[] yInput) {
+        DecimalFormat df;
         double[] midpoint, fx, dev2, fDev2;
         double stdev, cumFDev2, cumF_1;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
 
         // initialize
         midpoint = new double[yInput.length];
@@ -149,15 +165,29 @@ public class CalculatorGroupedData {
 
         stdev = Math.sqrt(cumFDev2 / cumF_1); // calculate standard deviation --->>
 
-        return stdev;
+        return Double.parseDouble(df.format(stdev));
     }
 
     public static double variance(XInput xInput, int[] yInput) {
-        return Math.pow(standardDeviation(xInput, yInput), 2);
+        DecimalFormat df;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return Double.parseDouble(df.format(Math.pow(standardDeviation(xInput, yInput), 2)));
     }
 
     public static double cv(XInput xInput, int[] yInput) {
-        return 0.0;
+        DecimalFormat df;
+        double s, x;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        s = standardDeviation(xInput, yInput);
+        x = mean(xInput, yInput);
+
+        return Double.parseDouble(df.format((s / x) * 100));
     }
     // ---------------------------------------------------------------------------------------------
 
@@ -454,7 +484,22 @@ public class CalculatorGroupedData {
     }
 
     public static String cvStep(String xList, String yList, XInput xInput, int[] yInput) {
-        return "";
+        String info, init, formula;
+        String step1, step2;
+        double S, X;
+
+        // inits
+        S = standardDeviation(xInput, yInput);
+        X = mean(xInput, yInput);
+
+        // steps
+        formula = "(S / " + Html.fromHtml("x&#772;") + ") * 100";
+        info = "\tCoefficient Variance = " + formula;
+        init = "\tCV = (" + S + " / " + X + ") * 100";
+        step1 = "\t = (" + (S / X) + ") * 100";
+        step2 = "\t = " + cv(xInput, yInput);
+
+        return info + "\n\n" + init + "\n" + step1 + "\n" + step2;
     }
     // ---------------------------------------------------------------------------------------------
 
