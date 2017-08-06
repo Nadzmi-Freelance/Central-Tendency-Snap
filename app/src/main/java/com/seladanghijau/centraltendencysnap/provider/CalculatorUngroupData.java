@@ -10,6 +10,8 @@ import org.apache.commons.math3.distribution.IntegerDistribution;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,11 +83,30 @@ public class CalculatorUngroupData {
     }
 
     public static double standardDeviation(int[] ungroupData) {
-        return new StandardDeviation().evaluate(convertToDoubleArray(ungroupData));
+        DecimalFormat df;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return Double.parseDouble(df.format(new StandardDeviation().evaluate(convertToDoubleArray(ungroupData))));
     }
 
     public static double variance(int[] ungroupData) {
-        return Math.pow(standardDeviation(ungroupData), 2);
+        DecimalFormat df;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return Double.parseDouble(df.format(Math.pow(standardDeviation(ungroupData), 2)));
+    }
+
+    public static double cv(double stdev, double mean) {
+        DecimalFormat df;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+
+        return Double.parseDouble(df.format((stdev / mean) * 100));
     }
     // ---------------------------------------------------------------------------------------------
 
@@ -276,6 +297,21 @@ public class CalculatorUngroupData {
 
         return info + "\n\n" + init;
     }
+
+    public static String cvStep(double stdev, double mean) {
+        String info, init, formula;
+        String step1, step2;
+
+        formula = "(S / " + Html.fromHtml("x&#772;") + ") * 100";
+        info = "\tS = Standard deviation" + "\n" +
+                "\t" + Html.fromHtml("x&#772;") + " = mean" + "\n" +
+                "\tCoefficient Variance(CV) = " + formula;
+        init = "\tCV = (" + stdev + " / " + mean + ") * 100";
+        step1 = "\t = (" + (stdev / mean) + ") * 100";
+        step2 = "\t = " + ((stdev / mean) * 100);
+
+        return info + "\n\n" + init + "\n" + step1 + "\n" + step2;
+    }
     // ---------------------------------------------------------------------------------------------
 
     // answer methods ------------------------------------------------------------------------------
@@ -333,6 +369,8 @@ public class CalculatorUngroupData {
 
         return answer;
     }
+
+    public static String cvAnswer(double stdev, double mean) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(stdev, mean)); }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

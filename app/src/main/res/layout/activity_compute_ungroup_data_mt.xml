@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.seladanghijau.centraltendencysnap.activity.ComputeUngroupData">
+    tools:context="com.seladanghijau.centraltendencysnap.activity.ComputeUngroupDataMT">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -97,64 +97,6 @@
 
                 <TextView
                     android:id="@+id/tvModeAnswer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:textColor="#FF0000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <TextView
-                    android:id="@+id/tvStandardDeviation"
-                    android:text="Standard Deviation: "
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/tvStandardDeviationStep"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:textColor="#0000ff" />
-
-                <TextView
-                    android:id="@+id/tvStandardDeviationAnswer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:textColor="#FF0000" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <TextView
-                    android:id="@+id/tvVariance"
-                    android:text="Variance: "
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/tvVarianceStep"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:textColor="#0000ff" />
-
-                <TextView
-                    android:id="@+id/tvVarianceAnswer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15dp"

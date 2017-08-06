@@ -1,20 +1,17 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.Toast;
 
 import com.seladanghijau.centraltendencysnap.R;
 import com.seladanghijau.centraltendencysnap.asynctask.CopyTraineddataFile;
@@ -26,7 +23,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.regex.Pattern;
 
 public class UngroupedData extends AppCompatActivity implements OCRManager, View.OnClickListener {
     // views
@@ -118,14 +114,49 @@ public class UngroupedData extends AppCompatActivity implements OCRManager, View
             case R.id.btnCompute:
                 String result;
                 String[] tokenizedResult;
+                AlertDialog.Builder alertDialogBuilder;
+                AlertDialog alertDialog;
 
+                // tokenize string --> get data from string
                 result = OCRProvider.getTokenizedString(etResult.getText().toString());
                 tokenizedResult = result.trim().split(",");
                 ungroupDatas = new int[tokenizedResult.length];
                 for(int x=0 ; x<tokenizedResult.length ; x++)
                     ungroupDatas[x] = Integer.parseInt(tokenizedResult[x].trim());
 
-                startActivity(new Intent(this, ComputeUngroupData.class).putExtra("ungroup-data", ungroupDatas));
+                // alert dialog
+                // setup alert dialog
+                alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
+                alertDialogBuilder.setTitle(R.string.popup_title);
+                alertDialogBuilder.setMessage(R.string.popup_message);
+                alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent computeGroupDataMT;
+
+                        // carry data to MT
+                        computeGroupDataMT = new Intent(getApplicationContext(), ComputeUngroupDataMT.class)
+                                .putExtra("ungroup-data", ungroupDatas);
+
+                        startActivity(computeGroupDataMT); // goto MT
+                    }
+                });
+                alertDialogBuilder.setNegativeButton(R.string.goto_mv, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent computeGroupDataMV;
+
+                        // carry data to MV
+                        computeGroupDataMV = new Intent(getApplicationContext(), ComputeUngroupDataMV.class)
+                                .putExtra("ungroup-data", ungroupDatas);
+
+                        startActivity(computeGroupDataMV); // goto MV
+                    }
+                });
+
+                // show alert dialog
+                alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
                 break;
         }
     }

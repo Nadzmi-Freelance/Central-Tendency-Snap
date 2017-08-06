@@ -29,8 +29,9 @@
         <activity android:name=".activity.GroupedData" />
         <activity android:name=".activity.UngroupedData" />
         <activity android:name=".activity.ComputeGroupDataMT" />
-        <activity android:name=".activity.ComputeUngroupData" />
+        <activity android:name=".activity.ComputeUngroupDataMT" />
         <activity android:name=".activity.ComputeGroupDataMV" />
+        <activity android:name=".activity.ComputeUngroupDataMV"></activity>
     </application>
 
 </manifest>
