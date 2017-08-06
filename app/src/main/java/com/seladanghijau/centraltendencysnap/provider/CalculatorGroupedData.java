@@ -155,6 +155,10 @@ public class CalculatorGroupedData {
     public static double variance(XInput xInput, int[] yInput) {
         return Math.pow(standardDeviation(xInput, yInput), 2);
     }
+
+    public static double cv(XInput xInput, int[] yInput) {
+        return 0.0;
+    }
     // ---------------------------------------------------------------------------------------------
 
     // steps methods -------------------------------------------------------------------------------
@@ -343,26 +347,26 @@ public class CalculatorGroupedData {
         return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
     }
 
-    /**
     public static String standardDeviationStep(String xList, String yList, XInput xInput, int[] yInput) {
-
+        return "";
     }
 
     public static String varianceStep(String xList, String yList, XInput xInput, int[] yInput) {
-
+        return "";
     }
-    */
+
+    public static String cvStep(String xList, String yList, XInput xInput, int[] yInput) {
+        return "";
+    }
     // ---------------------------------------------------------------------------------------------
 
     //  asnwer method ------------------------------------------------------------------------------
     public static String meanAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mean(xInput, yInput)); }
     public static String medianAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(median(xInput, yInput)); }
     public static String modeAnswer(XInput xInput, int[] yInput) { return Html.fromHtml("&there4;") + " " + String.valueOf(mode(xInput, yInput)); }
-
-    /**
-    public static String standardDeviationAnswer(XInput xInput, int[] yInput) {}
-    public static String varianceAnswer(XInput xInput, int[] yInput) {}
-    */
+    public static String standardDeviationAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(standardDeviation(xInput, yInput)); }
+    public static String varianceAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(variance(xInput, yInput)); }
+    public static String cvAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(xInput, yInput)); }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

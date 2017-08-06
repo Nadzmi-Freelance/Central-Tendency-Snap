@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.seladanghijau.centraltendencysnap.R;
 import com.seladanghijau.centraltendencysnap.dto.XInput;
 import com.seladanghijau.centraltendencysnap.provider.CalculatorGroupedData;
+import com.seladanghijau.centraltendencysnap.provider.CalculatorUngroupData;
 
 public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClickListener {
     // views var
@@ -65,19 +66,17 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
 
     // process -------------------------------------------------------------------------------------
     private void mainProcess() {
-        /*
-        tvStandardDeviationTitle.setText();
-        tvStandardDeviationStep.setText();
-        tvStandardDeviationAnswer.setText();
+        tvStandardDeviationTitle.setText("Standard Deviation: " + CalculatorGroupedData.standardDeviation(xInputList, yInputList));
+        tvStandardDeviationStep.setText(CalculatorGroupedData.standardDeviationStep(xInput, yInput, xInputList, yInputList));
+        tvStandardDeviationAnswer.setText(CalculatorGroupedData.standardDeviationAnswer(xInputList, yInputList));
 
-        tvVarianceTitle.setText();
-        tvVarianceStep.setText();
-        tvVarianceAnswer.setText();
+        tvVarianceTitle.setText("Variance: " + CalculatorGroupedData.variance(xInputList, yInputList));
+        tvVarianceStep.setText(CalculatorGroupedData.varianceStep(xInput, yInput, xInputList, yInputList));
+        tvVarianceAnswer.setText(CalculatorGroupedData.varianceAnswer(xInputList, yInputList));
 
-        tvCVTitle.setText();
-        tvCVStep.setText();
-        tvCVAnswer.setText();
-        */
+        tvCVTitle.setText("Coefficient Variance: " + CalculatorGroupedData.cv(xInputList, yInputList));
+        tvCVStep.setText(CalculatorGroupedData.cvStep(xInput, yInput, xInputList, yInputList));
+        tvCVAnswer.setText(CalculatorGroupedData.cvAnswer(xInputList, yInputList));
     }
     // ---------------------------------------------------------------------------------------------
 

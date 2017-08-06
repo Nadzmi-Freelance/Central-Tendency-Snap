@@ -28,23 +28,26 @@
             <TextView
                 android:text="@string/stdDev"
                 android:id="@+id/tvStandardDeviationTitle"
+                android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvStandardDeviationStep"
-                android:textColor="@color/black"
+                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp" />
+                android:textSize="15dp"
+                android:textColor="#0000ff" />
 
             <TextView
                 android:id="@+id/tvStandardDeviationAnswer"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="#FF0000" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,25 +56,28 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="@string/var"
                 android:id="@+id/tvVarianceTitle"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/var"
+                android:textSize="20dp"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvVarianceStep"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp" />
+                android:paddingLeft="20dp"
+                android:textSize="15dp"
+                android:textColor="#0000ff" />
 
             <TextView
                 android:id="@+id/tvVarianceAnswer"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="#FF0000" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,23 +88,26 @@
             <TextView
                 android:text="@string/cv"
                 android:id="@+id/tvCVTitle"
+                android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvCVStep"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp" />
+                android:paddingLeft="20dp"
+                android:textSize="15dp"
+                android:textColor="#0000ff" />
 
             <TextView
                 android:id="@+id/tvCVAnswer"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="#FF0000" />
         </LinearLayout>
 
         <LinearLayout
