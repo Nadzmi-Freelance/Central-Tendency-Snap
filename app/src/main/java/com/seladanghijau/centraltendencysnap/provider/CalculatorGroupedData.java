@@ -537,6 +537,12 @@ public class CalculatorGroupedData {
     public static String varianceAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(variance(xInput, yInput)); }
     public static String cvAnswer(XInput xInput, int[] yInput) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(xInput, yInput)); }
     public static String cvAnswer(double stdev, double mean) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(stdev, mean)); }
+    public static String cvCompare(double cv1, double cv2) {
+        if(cv1 < cv2)
+            return "Since Coefficient Variance for Set 1(" + cv1 + ") is < Set 2(" + cv2 + "), Coefficient Variance for Set 1 is more consistent.";
+        else
+            return "Since Coefficient Variance for Set 2(" + cv2 + ") is < Set 1(" + cv1 + "), Coefficient Variance for Set 2 is more consistent.";
+    }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
     // views var
     TextView tvStandardDeviationTitle, tvStandardDeviationStep, tvStandardDeviationAnswer;
     TextView tvVarianceTitle, tvVarianceStep, tvVarianceAnswer;
-    TextView tvCVTitle, tvCVStep, tvCVAnswer, tvCV2Title, tvCV2Step, tvCV2Answer;
+    TextView tvCVTitle, tvCVStep, tvCVAnswer, tvCV2Title, tvCV2Step, tvCV2Answer, tvCVCompareConc;
     Button btnSet2, btnCompareCV;
     LinearLayout llCVSet2, llInputCVSet2;
     EditText set2Mean, set2StandardDev, set2Variance;
@@ -55,6 +55,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
         tvCV2Title = (TextView) findViewById(R.id.tvCV2Title);
         tvCV2Step = (TextView) findViewById(R.id.tvCV2Step);
         tvCV2Answer = (TextView) findViewById(R.id.tvCV2Answer);
+        tvCVCompareConc = (TextView) findViewById(R.id.tvCVCompareConc);
         btnSet2 = (Button) findViewById(R.id.btnSet2);
         btnCompareCV = (Button) findViewById(R.id.btnCompareCV);
         llCVSet2 = (LinearLayout) findViewById(R.id.llCVSet2);
@@ -133,6 +134,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
                 tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
                 tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
                 tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
+                tvCVCompareConc.setText("\n" + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
                 break;
         }
     }
