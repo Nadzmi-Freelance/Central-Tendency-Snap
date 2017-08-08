@@ -21,10 +21,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(path: ':tess-two')
     compile files('libs/commons-math3-3.6.1.jar')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.rmtheis:tess-two:7.0.0'
     testCompile 'junit:junit:4.12'
 }
