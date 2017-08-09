@@ -127,7 +127,6 @@ public class UngroupedData extends AppCompatActivity implements OCRManager, View
                 // alert dialog
                 // setup alert dialog
                 alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
-                alertDialogBuilder.setMessage(R.string.popup_message);
                 alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

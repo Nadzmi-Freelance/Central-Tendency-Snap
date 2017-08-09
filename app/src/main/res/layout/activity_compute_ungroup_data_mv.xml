@@ -16,6 +16,16 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
+            <TextView
+                android:text="@string/set_1"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="30sp" />
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -102,6 +112,125 @@
                     android:paddingLeft="10dp"
                     android:textSize="15dp"
                     android:textColor="#FF0000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btnSet2"
+                    android:text="@string/cv_input_set2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@drawable/state_button" />
+            </LinearLayout>
+
+            <!-- set 2 -->
+            <!-- input -->
+            <LinearLayout
+                android:id="@+id/llInputCVSet2"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/set_2"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/set2Mean"
+                    android:hint="@string/hint_mean"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/set2StandardDev"
+                    android:hint="@string/stdDev"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/set2Variance"
+                    android:hint="@string/hint_variance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnCompareCV"
+                    android:text="@string/compare_cv"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@drawable/state_button" />
+            </LinearLayout>
+            <!-- result-->
+            <LinearLayout
+                android:id="@+id/llCVSet2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/set_2"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:text="@string/cv"
+                        android:id="@+id/tvCV2Title"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvCV2Step"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:textSize="15dp"
+                        android:textColor="#0000ff" />
+
+                    <TextView
+                        android:id="@+id/tvCV2Answer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textSize="15dp"
+                        android:textColor="#FF0000" />
+
+                    <TextView
+                        android:id="@+id/tvCVCompareConc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="italic"
+                        android:textColor="#FF0000" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
