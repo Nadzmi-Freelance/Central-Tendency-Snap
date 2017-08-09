@@ -14,7 +14,7 @@
         android:padding="10dp">
 
         <Button
-            android:text="Group Data"
+            android:text="@string/lbl_group_data"
             android:id="@+id/btnGroupData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:background="@drawable/state_button" />
 
         <Button
-            android:text="Ungroup Data"
+            android:text="@string/lbl_ungroup_data"
             android:id="@+id/btnUngroupData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

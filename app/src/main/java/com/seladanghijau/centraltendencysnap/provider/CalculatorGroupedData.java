@@ -6,9 +6,6 @@ import com.seladanghijau.centraltendencysnap.dto.XInput;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
 
 
 public class CalculatorGroupedData {
@@ -48,9 +45,8 @@ public class CalculatorGroupedData {
 
         // find median class
         n = 0;
-        for(int x=0 ; x<yInput.length ; x++) {
-            n += yInput[x];
-        }
+        for (int aYInput : yInput)
+            n += aYInput;
 
         double tempMedF = 0;
         medianPos = (double) n / 2;
@@ -159,8 +155,8 @@ public class CalculatorGroupedData {
 
         // cumF_1
         cumF_1 = 0;
-        for(int x=0 ; x<yInput.length ; x++)
-            cumF_1 += yInput[x];
+        for (int aYInput : yInput)
+            cumF_1 += aYInput;
         cumF_1 -= 1;
 
         stdev = Math.sqrt(cumFDev2 / cumF_1); // calculate standard deviation --->>
@@ -254,7 +250,7 @@ public class CalculatorGroupedData {
         return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
     }
 
-    public static String medianStep(String xList, String yList, XInput xInput, int[] yInput) {
+    public static String medianStep(XInput xInput, int[] yInput) {
         String info, init, step1, step2;
         String sumNList, nBefList;
         int medianClassIndex, nBef;
@@ -329,10 +325,10 @@ public class CalculatorGroupedData {
         return info + "\n\n" + init + "\n\n" + step1 + "\n\n" + step2;
     }
 
-    public static String modeStep(String xList, String yList, XInput xInput, int[] yInput) {
-        String info, init, step1, step2, step3;
+    public static String modeStep(XInput xInput, int[] yInput) {
+        String info, init, step1, step2;
 
-        double del1, del2, result, c, lMode;
+        double del1, del2, c, lMode;
         int highestF, highestFIndex;
 
         // find highest frequency to obtain modal class
@@ -358,7 +354,6 @@ public class CalculatorGroupedData {
         c = xInput.getClassWidth();
 
         // calculate
-        result = lMode + ((del1 / (del1 + del2)) * c);
 
         info = "Mode = Lmode + (" + Html.fromHtml("&Delta;") + "1 / (" + Html.fromHtml("&Delta;") + "1 + " + Html.fromHtml("&Delta;") + "2)) X C\n" +
                 "\tLmode = Lower class boundary\n" +
@@ -478,7 +473,7 @@ public class CalculatorGroupedData {
         return info + "\n\n" + init + "\n\n" + step1 + "\n" + step2;
     }
 
-    public static String varianceStep(String xList, String yList, XInput xInput, int[] yInput) {
+    public static String varianceStep(XInput xInput, int[] yInput) {
         String info, init;
         double S;
 
@@ -492,7 +487,7 @@ public class CalculatorGroupedData {
         return info + "\n\n" + init;
     }
 
-    public static String cvStep(String xList, String yList, XInput xInput, int[] yInput) {
+    public static String cvStep(XInput xInput, int[] yInput) {
         String info, init, formula;
         String step1, step2;
         double S, X;
@@ -570,7 +565,7 @@ public class CalculatorGroupedData {
         return result; // return array of integer for y-values
     }
 
-    public static String checkYInput(String yInput) {
+    private static String checkYInput(String yInput) {
         String tempYInput;
         String[] trimedYInputs;
 
@@ -588,7 +583,7 @@ public class CalculatorGroupedData {
         return tempYInput;
     }
 
-    public static String checkXInput(String xInput) {
+    private static String checkXInput(String xInput) {
         String tempXInput;
         String[] trimedXInputs;
 
@@ -606,7 +601,7 @@ public class CalculatorGroupedData {
         return tempXInput;
     }
 
-    public static XInput extractXUclLcl(String xInput) {
+    private static XInput extractXUclLcl(String xInput) {
         String[] uclLcl;
         int[] lcl, ucl;
 

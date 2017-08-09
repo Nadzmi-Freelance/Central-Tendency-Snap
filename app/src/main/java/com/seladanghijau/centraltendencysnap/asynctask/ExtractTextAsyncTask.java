@@ -3,19 +3,13 @@ package com.seladanghijau.centraltendencysnap.asynctask;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 import com.seladanghijau.centraltendencysnap.manager.OCRManager;
 import com.seladanghijau.centraltendencysnap.provider.OCRProvider;
 
-import java.io.File;
 
-/**
- * Created by seladanghijau on 14/8/2016.
- */
 public class ExtractTextAsyncTask extends AsyncTask<Void, Void, Void> {
     private ProgressDialog progressDialog;
     private Context context;

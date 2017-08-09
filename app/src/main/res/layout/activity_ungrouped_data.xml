@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:contentDescription="@string/lbl_img" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,7 +23,7 @@
 
         <EditText
             android:id="@+id/etResult"
-            android:hint="Extracted text from image. \n\nYou can input it yourself to compute the value."
+            android:hint="@string/hint_data_form"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:textColorHint="@color/colorSecondary"
@@ -37,7 +38,7 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:text="Upload"
+                android:text="@string/btn_upload"
                 android:id="@+id/btnUpload"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
                 android:background="@drawable/state_button" />
 
             <Button
-                android:text="Capture"
+                android:text="@string/btn_capture"
                 android:id="@+id/btnCapture"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -56,7 +57,7 @@
         </RelativeLayout>
 
         <Button
-            android:text="Compute"
+            android:text="@string/btn_compute"
             android:id="@+id/btnCompute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

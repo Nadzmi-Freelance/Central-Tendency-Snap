@@ -1,5 +1,6 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -51,17 +52,18 @@ public class ComputeGroupDataMT extends AppCompatActivity {
         yInputList = CalculatorGroupedData.extractYInput(yInput);
     }
 
+    @SuppressLint("SetTextI18n")
     private void process() {
         tvMeanTitle.setText("Mean: " + CalculatorGroupedData.mean(xInputList, yInputList));
         tvMeanStep.setText(CalculatorGroupedData.meanStep(xInput, yInput, xInputList, yInputList));
         tvMeanAnswer.setText(CalculatorGroupedData.meanAnswer(xInputList, yInputList));
 
         tvMedianTitle.setText("Median: " + CalculatorGroupedData.median(xInputList, yInputList));
-        tvMedianStep.setText(CalculatorGroupedData.medianStep(xInput, yInput, xInputList, yInputList));
+        tvMedianStep.setText(CalculatorGroupedData.medianStep(xInputList, yInputList));
         tvMedianAnswer.setText(CalculatorGroupedData.medianAnswer(xInputList, yInputList));
 
         tvModeTitle.setText("Mode: " + CalculatorGroupedData.mode(xInputList, yInputList));
-        tvModeStep.setText(CalculatorGroupedData.modeStep(xInput, yInput, xInputList, yInputList));
+        tvModeStep.setText(CalculatorGroupedData.modeStep(xInputList, yInputList));
         tvModeAnswer.setText(CalculatorGroupedData.modeAnswer(xInputList, yInputList));
     }
     // ---------------------------------------------------------------------------------------------

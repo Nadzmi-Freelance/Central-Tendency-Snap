@@ -5,9 +5,7 @@ import android.os.AsyncTask;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Created by seladanghijau on 14/8/2016.
- */
+
 public class CopyTraineddataFile extends AsyncTask<Void, Void, Void> {
     private InputStream from;
     private OutputStream to;

@@ -24,24 +24,24 @@
 
                 <TextView
                     android:id="@+id/tvMean"
-                    android:text="Mean: "
+                    android:text="@string/compute_mean"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvMeanStep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#0000ff" />
 
                 <TextView
                     android:id="@+id/tvMeanAnswer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#FF0000" />
             </LinearLayout>
 
@@ -53,24 +53,24 @@
 
                 <TextView
                     android:id="@+id/tvMedian"
-                    android:text="Median: "
+                    android:text="@string/compute_median"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvMedianStep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#0000ff" />
 
                 <TextView
                     android:id="@+id/tvMedianAnswer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#FF0000" />
             </LinearLayout>
 
@@ -82,24 +82,24 @@
 
                 <TextView
                     android:id="@+id/tvMode"
-                    android:text="Mode: "
+                    android:text="@string/compute_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvModeStep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#0000ff" />
 
                 <TextView
                     android:id="@+id/tvModeAnswer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#FF0000" />
             </LinearLayout>
         </LinearLayout>

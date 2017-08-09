@@ -9,7 +9,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:text="@string/input_info"
@@ -61,7 +61,7 @@
                 android:maxLines="1" />
 
             <Button
-                android:text="Compute"
+                android:text="@string/btn_compute"
                 android:id="@+id/btnCompute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

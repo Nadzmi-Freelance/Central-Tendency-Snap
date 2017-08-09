@@ -1,5 +1,6 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -77,6 +78,7 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
     // ---------------------------------------------------------------------------------------------
 
     // process -------------------------------------------------------------------------------------
+    @SuppressLint("SetTextI18n")
     private void mainProcess() {
         llCVSet2.setVisibility(View.GONE);
         llInputCVSet2.setVisibility(View.GONE);
@@ -96,6 +98,7 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
     // ---------------------------------------------------------------------------------------------
 
     // listener ------------------------------------------------------------------------------------
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

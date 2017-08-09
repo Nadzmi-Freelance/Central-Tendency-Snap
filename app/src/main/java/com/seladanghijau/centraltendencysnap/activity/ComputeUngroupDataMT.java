@@ -1,5 +1,6 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class ComputeUngroupDataMT extends AppCompatActivity {
         tvModeAnswer = (TextView) findViewById(R.id.tvModeAnswer);
     }
 
+    @SuppressLint("SetTextI18n")
     private void initVars() {
         ungroupData = getIntent().getIntArrayExtra("ungroup-data");
 

@@ -1,8 +1,6 @@
 package com.seladanghijau.centraltendencysnap.dto;
 
-/**
- * Created by seladanghijau on 14/9/2016.
- */
+
 public class XInput {
     private int[] lcl, ucl;
     private double[] lcb, ucb, midpoint;
@@ -10,16 +8,6 @@ public class XInput {
     private double classWidth;
 
     // constructor
-    public XInput() {
-        lcl = null;
-        ucl = null;
-        size = 0;
-
-        setLCB();
-        setUCB();
-        setClassWidth();
-    }
-
     public XInput(int[] lcl, int[] ucl) {
         this.lcl = lcl;
         this.ucl = ucl;
@@ -40,10 +28,7 @@ public class XInput {
     public double getClassWidth() { return  classWidth; }
     public double[] getMidpoint() { return midpoint; }
 
-    // setter
-    private void setLCL(int[] lcl) { this.lcl = lcl; }
-    private void setUCL(int[] ucl) { this.ucl = ucl; }
-
+    // other methods
     private void setLCB() {
         lcb = new double[lcl.length];
 

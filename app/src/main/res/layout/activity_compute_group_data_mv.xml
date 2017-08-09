@@ -8,7 +8,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:text="@string/set_1"
@@ -28,7 +28,7 @@
             <TextView
                 android:text="@string/stdDev"
                 android:id="@+id/tvStandardDeviationTitle"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -38,7 +38,7 @@
                 android:paddingLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#0000ff" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#FF0000" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/var"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#0000ff" />
 
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#FF0000" />
         </LinearLayout>
 
@@ -88,7 +88,7 @@
             <TextView
                 android:text="@string/cv"
                 android:id="@+id/tvCVTitle"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#0000ff" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="#FF0000" />
         </LinearLayout>
 
@@ -171,6 +171,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/state_button" />
         </LinearLayout>
+
         <!-- result-->
         <LinearLayout
             android:id="@+id/llCVSet2"
@@ -197,7 +198,7 @@
                 <TextView
                     android:text="@string/cv"
                     android:id="@+id/tvCV2Title"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -207,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#0000ff" />
 
                 <TextView
@@ -215,7 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textColor="#FF0000" />
 
                 <TextView
@@ -223,7 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="italic"
                     android:textColor="#FF0000" />
             </LinearLayout>

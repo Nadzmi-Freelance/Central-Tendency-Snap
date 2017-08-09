@@ -1,9 +1,9 @@
 package com.seladanghijau.centraltendencysnap.activity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.seladanghijau.centraltendencysnap.R;
 import com.seladanghijau.centraltendencysnap.dto.XInput;
 import com.seladanghijau.centraltendencysnap.provider.CalculatorGroupedData;
-import com.seladanghijau.centraltendencysnap.provider.CalculatorUngroupData;
 
 public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClickListener {
     // views var
@@ -82,6 +81,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
     // ---------------------------------------------------------------------------------------------
 
     // process -------------------------------------------------------------------------------------
+    @SuppressLint("SetTextI18n")
     private void mainProcess() {
         llCVSet2.setVisibility(View.GONE);
         llInputCVSet2.setVisibility(View.GONE);
@@ -91,16 +91,17 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
         tvStandardDeviationAnswer.setText(CalculatorGroupedData.standardDeviationAnswer(xInputList, yInputList));
 
         tvVarianceTitle.setText("Variance: " + CalculatorGroupedData.variance(xInputList, yInputList));
-        tvVarianceStep.setText(CalculatorGroupedData.varianceStep(xInput, yInput, xInputList, yInputList));
+        tvVarianceStep.setText(CalculatorGroupedData.varianceStep(xInputList, yInputList));
         tvVarianceAnswer.setText(CalculatorGroupedData.varianceAnswer(xInputList, yInputList));
 
         tvCVTitle.setText("Coefficient Variance: " + CalculatorGroupedData.cv(xInputList, yInputList));
-        tvCVStep.setText(CalculatorGroupedData.cvStep(xInput, yInput, xInputList, yInputList));
+        tvCVStep.setText(CalculatorGroupedData.cvStep(xInputList, yInputList));
         tvCVAnswer.setText(CalculatorGroupedData.cvAnswer(xInputList, yInputList));
     }
     // ---------------------------------------------------------------------------------------------
 
     // listener ------------------------------------------------------------------------------------
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

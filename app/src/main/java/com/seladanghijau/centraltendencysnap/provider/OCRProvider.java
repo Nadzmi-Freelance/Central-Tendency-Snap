@@ -1,22 +1,15 @@
 package com.seladanghijau.centraltendencysnap.provider;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 
-/**
- * Created by seladanghijau on 14/8/2016.
- */
+
 public class OCRProvider {
-    public static final String TESSDATA_DIR = "centraltendencysnap";
+    private static final String TESSDATA_DIR = "centraltendencysnap";
     public static final String TESSDATA_DIR_PATH = Environment.getExternalStorageDirectory().getPath() +  "/" + TESSDATA_DIR;
     public static final String TESSDATA_ENG = "eng.traineddata";
     public static final String LANGUAGE = "eng";
@@ -52,16 +45,14 @@ public class OCRProvider {
     public static String getTokenizedString(String data) {
         String result;
 
-        result = "";
         if(data.contains("\n")) {
             String[] dataPart;
             String tempResult;
 
             tempResult = "";
             dataPart = data.split("\n");
-            for(int x=0 ; x<dataPart.length ; x++) {
-                tempResult += " " + dataPart[x].trim();
-            }
+            for (String aDataPart : dataPart)
+                tempResult += " " + aDataPart.trim();
 
             result = tempResult;
         } else
@@ -72,7 +63,7 @@ public class OCRProvider {
         return result;
     }
 
-    public static String finalRepair(String data) {
+    private static String finalRepair(String data) {
         String[] dataparts;
         String tempResult;
 

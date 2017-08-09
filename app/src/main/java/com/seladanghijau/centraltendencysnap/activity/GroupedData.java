@@ -33,7 +33,8 @@ public class GroupedData extends AppCompatActivity implements View.OnClickListen
         etYInput = (EditText) findViewById(R.id.etYInput);
         btnCompute = (Button) findViewById(R.id.btnCompute);
 
-        btnCompute.setOnClickListener(this);
+        if (btnCompute != null)
+            btnCompute.setOnClickListener(this);
     }
 
     private void initVars() {

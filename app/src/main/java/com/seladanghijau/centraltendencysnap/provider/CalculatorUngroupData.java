@@ -1,12 +1,7 @@
 package com.seladanghijau.centraltendencysnap.provider;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.text.Html;
-import android.widget.ListView;
 
-import org.apache.commons.math3.distribution.IntegerDistribution;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
@@ -24,9 +19,8 @@ public class CalculatorUngroupData {
 
         sum = 0;
         tempData = ungroupData.clone();
-        for(int x=0 ; x<tempData.length ; x++) {
-            sum += tempData[x];
-        }
+        for (int aTempData : tempData)
+            sum += aTempData;
 
         return (sum / tempData.length);
     }
@@ -41,22 +35,21 @@ public class CalculatorUngroupData {
 
         maxCount = 0;
         maxValues = new ArrayList<>();
-        for (int i = 0; i<ungroupData.length; ++i) {
+        for (int anUngroupData : ungroupData) {
             int count;
 
             count = 0;
-            for (int j = 0; j<ungroupData.length; ++j) {
-                if (ungroupData[j] == ungroupData[i])
+            for (int anUngroupData1 : ungroupData)
+                if (anUngroupData1 == anUngroupData)
                     ++count;
-            }
 
             if (count == maxCount)
-                maxValues.add(ungroupData[i]);
+                maxValues.add(anUngroupData);
 
             if (count > maxCount) {
                 maxCount = count;
                 maxValues.clear();
-                maxValues.add(ungroupData[i]);
+                maxValues.add(anUngroupData);
             }
         }
 
@@ -217,7 +210,6 @@ public class CalculatorUngroupData {
 
         sumX = 0;
         sumX2 = 0;
-        sum2X = 0;
         varX = ungroupData.clone();
         varN = varX.length;
         varX2 = new int[varN];
