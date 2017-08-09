@@ -94,7 +94,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
         tvVarianceStep.setText(CalculatorGroupedData.varianceStep(xInputList, yInputList));
         tvVarianceAnswer.setText(CalculatorGroupedData.varianceAnswer(xInputList, yInputList));
 
-        tvCVTitle.setText("Coefficient Variance: " + CalculatorGroupedData.cv(xInputList, yInputList));
+        tvCVTitle.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(xInputList, yInputList));
         tvCVStep.setText(CalculatorGroupedData.cvStep(xInputList, yInputList));
         tvCVAnswer.setText(CalculatorGroupedData.cvAnswer(xInputList, yInputList));
     }
@@ -156,7 +156,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
                         // calc cv2
                         cvSet2 = CalculatorGroupedData.cv(Math.sqrt(variance2), mean2);
 
-                        tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(Math.sqrt(variance2), mean2));
+                        tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(Math.sqrt(variance2), mean2));
                         tvCV2Step.setText(CalculatorGroupedData.cvStep(Math.sqrt(variance2), mean2));
                         tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(Math.sqrt(variance2), mean2));
                         tvCVCompareConc.setText("\n" + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
@@ -187,7 +187,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
                         // calc cv2
                         cvSet2 = CalculatorGroupedData.cv(stdev2, mean2);
 
-                        tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
+                        tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(stdev2, mean2));
                         tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
                         tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
                         tvCVCompareConc.setText("\n" + Html.fromHtml("&there4;") + " " + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
@@ -212,7 +212,7 @@ public class ComputeGroupDataMV extends AppCompatActivity implements View.OnClic
                     else
                         cvSet2 = CalculatorGroupedData.cv(Math.sqrt(variance2), mean2);
 
-                    tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
+                    tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(stdev2, mean2));
                     tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
                     tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
                     tvCVCompareConc.setText("\n" + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));

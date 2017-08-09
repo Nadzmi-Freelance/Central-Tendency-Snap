@@ -91,7 +91,7 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
         tvVarianceStep.setText(CalculatorUngroupData.varianceStep(ungroupData));
         tvVarianceAnswer.setText(CalculatorUngroupData.varianceAnswer(ungroupData));
 
-        tvCVTitle.setText("Coefficient Variance: " + CalculatorUngroupData.cv(CalculatorUngroupData.standardDeviation(ungroupData), CalculatorUngroupData.mean(ungroupData)));
+        tvCVTitle.setText("Coefficient of Variation: " + CalculatorUngroupData.cv(CalculatorUngroupData.standardDeviation(ungroupData), CalculatorUngroupData.mean(ungroupData)));
         tvCVStep.setText(CalculatorUngroupData.cvStep(CalculatorUngroupData.standardDeviation(ungroupData), CalculatorUngroupData.mean(ungroupData)));
         tvCVAnswer.setText(CalculatorUngroupData.cvAnswer(CalculatorUngroupData.standardDeviation(ungroupData), CalculatorUngroupData.mean(ungroupData)));
     }
@@ -153,7 +153,7 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
                         // calc cv2
                         cvSet2 = CalculatorGroupedData.cv(Math.sqrt(variance2), mean2);
 
-                        tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(Math.sqrt(variance2), mean2));
+                        tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(Math.sqrt(variance2), mean2));
                         tvCV2Step.setText(CalculatorGroupedData.cvStep(Math.sqrt(variance2), mean2));
                         tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(Math.sqrt(variance2), mean2));
                         tvCVCompareConc.setText("\n" + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
@@ -184,7 +184,7 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
                         // calc cv2
                         cvSet2 = CalculatorGroupedData.cv(stdev2, mean2);
 
-                        tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
+                        tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(stdev2, mean2));
                         tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
                         tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
                         tvCVCompareConc.setText("\n" + Html.fromHtml("&there4;") + " " + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
@@ -209,10 +209,10 @@ public class ComputeUngroupDataMV extends AppCompatActivity implements View.OnCl
                     else
                         cvSet2 = CalculatorGroupedData.cv(Math.sqrt(variance2), mean2);
 
-                    tvCV2Title.setText("Coefficient Variance: " + CalculatorGroupedData.cv(stdev2, mean2));
+                    tvCV2Title.setText("Coefficient of Variation: " + CalculatorGroupedData.cv(stdev2, mean2));
                     tvCV2Step.setText(CalculatorGroupedData.cvStep(stdev2, mean2));
                     tvCV2Answer.setText(CalculatorGroupedData.cvAnswer(stdev2, mean2));
-                    tvCVCompareConc.setText("\n" + CalculatorGroupedData.cvCompare(cvSet1, cvSet2));
+                    tvCVCompareConc.setText("\n" + CalculatorUngroupData.cvCompare(cvSet1, cvSet2));
                 }
                 break;
         }

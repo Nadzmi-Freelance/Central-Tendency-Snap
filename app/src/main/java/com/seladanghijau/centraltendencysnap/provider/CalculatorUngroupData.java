@@ -297,7 +297,7 @@ public class CalculatorUngroupData {
         formula = "(S / " + Html.fromHtml("x&#772;") + ") * 100";
         info = "\tS = Standard deviation" + "\n" +
                 "\t" + Html.fromHtml("x&#772;") + " = mean" + "\n" +
-                "\tCoefficient Variance(CV) = " + formula;
+                "\tCoefficient of Variation(CV) = " + formula;
         init = "\tCV = (" + stdev + " / " + mean + ") * 100";
         step1 = "\t = (" + (stdev / mean) + ") * 100";
         step2 = "\t = " + ((stdev / mean) * 100);
@@ -363,6 +363,12 @@ public class CalculatorUngroupData {
     }
 
     public static String cvAnswer(double stdev, double mean) { return "\t" + Html.fromHtml("&there4;") + " " + String.valueOf(cv(stdev, mean)); }
+    public static String cvCompare(double cv1, double cv2) {
+        if(cv1 < cv2)
+            return "Since Coefficient of Variation for Set 1(" + cv1 + ") is < Set 2(" + cv2 + "), Coefficient of Variation for Set 1 is more consistent.";
+        else
+            return "Since Coefficient of Variation for Set 2(" + cv2 + ") is < Set 1(" + cv1 + "), Coefficient of Variation for Set 2 is more consistent.";
+    }
     // ---------------------------------------------------------------------------------------------
 
     // util methods --------------------------------------------------------------------------------

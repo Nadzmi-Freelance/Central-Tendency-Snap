@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#cc00cc</color>
-    <color name="colorPrimaryDark">#660066</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#222222</color>
     <color name="colorSecondary">#33cc33</color>
     <color name="colorTertiary">#ffff00</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <!-- temp -->
+    <color name="former_primary">#cc00cc</color>
+    <color name="former_primary_dark">#660066</color>
 </resources>

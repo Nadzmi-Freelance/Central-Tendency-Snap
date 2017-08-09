@@ -12,10 +12,10 @@
     <string name="mode">Mode</string>
     <string name="stdDev">Standard Deviation</string>
     <string name="var">Variance</string>
-    <string name="cv">Coefficient Variance</string>
+    <string name="cv">Coefficient of Variation</string>
     <string name="set_1">Set 1</string>
     <string name="set_2">Set 2</string>
-    <string name="compare_cv">Compare Coefficient Variance</string>
+    <string name="compare_cv">Compare Coefficient of Variation</string>
     <string name="cv_input_set2">Input CV for Set 2</string>
     <string name="hint_data_form">Extracted text from image. \n\nYou can input it yourself to compute the value.</string>
     <string name="hint_mean">Mean</string>
