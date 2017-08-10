@@ -140,44 +140,55 @@ public class UngroupedData extends AppCompatActivity implements OCRManager, View
                 AlertDialog.Builder alertDialogBuilder;
                 AlertDialog alertDialog;
 
-                // tokenize string --> get data from string
-                result = OCRProvider.getTokenizedString(etResult.getText().toString());
-                tokenizedResult = result.trim().split(",");
-                ungroupDatas = new int[tokenizedResult.length];
-                for(int x=0 ; x<tokenizedResult.length ; x++)
-                    ungroupDatas[x] = Integer.parseInt(tokenizedResult[x].trim());
+                // check if string is empty
+                if(etResult.getText().toString().isEmpty()) {
+                    // setup alert dialog
+                    alertDialogBuilder = new AlertDialog.Builder(this);
+                    alertDialogBuilder.setMessage(R.string.exp_input_empty);
 
-                // alert dialog
-                // setup alert dialog
-                alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
-                alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent computeGroupDataMT;
+                    // show alert dialog
+                    alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    // tokenize string --> get data from string
+                    result = OCRProvider.getTokenizedString(etResult.getText().toString());
+                    tokenizedResult = result.trim().split(",");
+                    ungroupDatas = new int[tokenizedResult.length];
+                    for(int x=0 ; x<tokenizedResult.length ; x++)
+                        ungroupDatas[x] = Integer.parseInt(tokenizedResult[x].trim());
 
-                        // carry data to MT
-                        computeGroupDataMT = new Intent(getApplicationContext(), ComputeUngroupDataMT.class)
-                                .putExtra("ungroup-data", ungroupDatas);
+                    // alert dialog
+                    // setup alert dialog
+                    alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
+                    alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent computeGroupDataMT;
 
-                        startActivity(computeGroupDataMT); // goto MT
-                    }
-                });
-                alertDialogBuilder.setNegativeButton(R.string.goto_mv, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent computeGroupDataMV;
+                            // carry data to MT
+                            computeGroupDataMT = new Intent(getApplicationContext(), ComputeUngroupDataMT.class)
+                                    .putExtra("ungroup-data", ungroupDatas);
 
-                        // carry data to MV
-                        computeGroupDataMV = new Intent(getApplicationContext(), ComputeUngroupDataMV.class)
-                                .putExtra("ungroup-data", ungroupDatas);
+                            startActivity(computeGroupDataMT); // goto MT
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton(R.string.goto_mv, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent computeGroupDataMV;
 
-                        startActivity(computeGroupDataMV); // goto MV
-                    }
-                });
+                            // carry data to MV
+                            computeGroupDataMV = new Intent(getApplicationContext(), ComputeUngroupDataMV.class)
+                                    .putExtra("ungroup-data", ungroupDatas);
 
-                // show alert dialog
-                alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                            startActivity(computeGroupDataMV); // goto MV
+                        }
+                    });
+
+                    // show alert dialog
+                    alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
                 break;
         }
     }

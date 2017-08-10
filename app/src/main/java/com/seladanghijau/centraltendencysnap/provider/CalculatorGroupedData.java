@@ -91,21 +91,26 @@ public class CalculatorGroupedData {
         // find highest frequency to obtain modal class
         highestF = 0;
         highestFIndex = 0;
-        for(int x=0 ; x<yInput.length ; x++) {
+        for(int x=0 ; x<yInput.length ; x++)
             if(yInput[x] > highestF) {
                 highestF = yInput[x];
                 highestFIndex = x;
             }
-        }
 
         // find lower class boundary
         lMode = xInput.getLCB(highestFIndex);
 
         // find delta 1 (diff mode f & f before it)
-        del1 = yInput[highestFIndex] - yInput[highestFIndex-1];
+        if((highestFIndex - 1) <= 0)
+            del1 = yInput[highestFIndex];
+        else
+            del1 = yInput[highestFIndex] - yInput[highestFIndex-1];
 
         // find delta 2 (diff between mode f & f after it)
-        del2 = yInput[highestFIndex] - yInput[highestFIndex+1];
+        if((highestFIndex + 1) >= yInput.length)
+            del2 = yInput[highestFIndex];
+        else
+            del2 = yInput[highestFIndex] - yInput[highestFIndex+1];
 
         // find class size
         c = xInput.getClassWidth();
@@ -345,10 +350,16 @@ public class CalculatorGroupedData {
         lMode = xInput.getLCB(highestFIndex);
 
         // find delta 1 (diff mode f & f before it)
-        del1 = yInput[highestFIndex] - yInput[highestFIndex-1];
+        if((highestFIndex - 1) <= 0)
+            del1 = yInput[highestFIndex];
+        else
+            del1 = yInput[highestFIndex] - yInput[highestFIndex-1];
 
         // find delta 2 (diff between mode f & f after it)
-        del2 = yInput[highestFIndex] - yInput[highestFIndex+1];
+        if((highestFIndex + 1) >= yInput.length)
+            del2 = yInput[highestFIndex];
+        else
+            del2 = yInput[highestFIndex] - yInput[highestFIndex+1];
 
         // find class size
         c = xInput.getClassWidth();

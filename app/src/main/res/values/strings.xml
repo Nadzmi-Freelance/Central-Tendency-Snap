@@ -72,4 +72,5 @@
 
     <!-- exceptions -->
     <string name="exp_crop_function">Your phone does not have crop functionality. You have to install app that has crop functionality.</string>
+    <string name="exp_input_empty">Please fill all of the forms.</string>
 </resources>

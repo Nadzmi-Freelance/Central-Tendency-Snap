@@ -54,38 +54,49 @@ public class GroupedData extends AppCompatActivity implements View.OnClickListen
                 xInputList = etXInput.getText().toString().trim();
                 yInputList = etYInput.getText().toString().trim();
 
-                // setup alert dialog
-                alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
-                alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent computeGroupDataMT;
+                // check if string is empty
+                if(xInputList.isEmpty() || yInputList.isEmpty()) {
+                    // setup alert dialog
+                    alertDialogBuilder = new AlertDialog.Builder(this);
+                    alertDialogBuilder.setMessage(R.string.exp_input_empty);
 
-                        // carry data to MT
-                        computeGroupDataMT = new Intent(getApplicationContext(), ComputeGroupDataMT.class)
-                                .putExtra("xInputList", xInputList)
-                                .putExtra("yInputList", yInputList);
+                    // show alert dialog
+                    alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    // setup alert dialog
+                    alertDialogBuilder = new AlertDialog.Builder(this); // alert for user to choose MT/MV
+                    alertDialogBuilder.setPositiveButton(R.string.goto_mt, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent computeGroupDataMT;
 
-                        startActivity(computeGroupDataMT); // goto MT
-                    }
-                });
-                alertDialogBuilder.setNegativeButton(R.string.goto_mv, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent computeGroupDataMV;
+                            // carry data to MT
+                            computeGroupDataMT = new Intent(getApplicationContext(), ComputeGroupDataMT.class)
+                                    .putExtra("xInputList", xInputList)
+                                    .putExtra("yInputList", yInputList);
 
-                        // carry data to MV
-                        computeGroupDataMV = new Intent(getApplicationContext(), ComputeGroupDataMV.class)
-                                .putExtra("xInputList", xInputList)
-                                .putExtra("yInputList", yInputList);
+                            startActivity(computeGroupDataMT); // goto MT
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton(R.string.goto_mv, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent computeGroupDataMV;
 
-                        startActivity(computeGroupDataMV); // goto MV
-                    }
-                });
+                            // carry data to MV
+                            computeGroupDataMV = new Intent(getApplicationContext(), ComputeGroupDataMV.class)
+                                    .putExtra("xInputList", xInputList)
+                                    .putExtra("yInputList", yInputList);
 
-                // show alert dialog
-                alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                            startActivity(computeGroupDataMV); // goto MV
+                        }
+                    });
+
+                    // show alert dialog
+                    alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
                 break;
         }
     }

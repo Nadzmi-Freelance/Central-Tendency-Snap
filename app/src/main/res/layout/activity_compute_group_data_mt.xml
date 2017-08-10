@@ -18,7 +18,8 @@
             <TextView
                 android:text="@string/mean"
                 android:id="@+id/tvMeanTitle"
-                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -45,7 +46,8 @@
             <TextView
                 android:text="@string/median"
                 android:id="@+id/tvMedianTitle"
-                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -72,7 +74,8 @@
             <TextView
                 android:text="@string/mode"
                 android:id="@+id/tvModeTitle"
-                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
