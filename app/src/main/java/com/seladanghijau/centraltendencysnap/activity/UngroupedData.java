@@ -2,6 +2,7 @@ package com.seladanghijau.centraltendencysnap.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.seladanghijau.centraltendencysnap.R;
 import com.seladanghijau.centraltendencysnap.asynctask.CopyTraineddataFile;
@@ -23,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class UngroupedData extends AppCompatActivity implements OCRManager, View.OnClickListener {
     // views
@@ -81,16 +84,36 @@ public class UngroupedData extends AppCompatActivity implements OCRManager, View
 
     public void performCrop(Uri imageUri) {
         Intent cropIntent;
+        List<ResolveInfo> infoList;
 
         try {
-            cropIntent = new Intent("com.android.camera.action.CROP");
-            cropIntent.setDataAndType(imageUri, "image/*");
-            cropIntent.putExtra("crop", "true");
-            cropIntent.putExtra("scale", true);
-            cropIntent.putExtra("noFaceDetection", true);
-            cropIntent.putExtra("return-data", true);
+            int infoSize;
 
-            startActivityForResult(cropIntent, OCRProvider.PIC_CROP);
+            cropIntent = new Intent("com.android.camera.action.CROP");
+            cropIntent.setType("image/*");
+
+            // check for crop functionality
+            infoList = getPackageManager().queryIntentActivities(cropIntent, 0);
+            infoSize = infoList.size();
+
+            if(infoSize == 0) { // no crop functionality
+                AlertDialog.Builder alertDialogBuilder;
+                AlertDialog alertDialog;
+
+                alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage(R.string.exp_crop_function);
+
+                alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            } else { // has crop functionality
+                cropIntent.setData(imageUri);
+                cropIntent.putExtra("crop", "true");
+                cropIntent.putExtra("scale", true);
+                cropIntent.putExtra("noFaceDetection", true);
+                cropIntent.putExtra("return-data", true);
+
+                startActivityForResult(cropIntent, OCRProvider.PIC_CROP);
+            }
         } catch (Exception e) { e.printStackTrace(); }
     }
     // ---------------------------------------------------------------------------------------------

@@ -5,15 +5,15 @@ android {
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.seladanghijau.centraltendencysnap"
-        minSdkVersion 15
+        applicationId "com.seladanghijau.ctcvs"
+        minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

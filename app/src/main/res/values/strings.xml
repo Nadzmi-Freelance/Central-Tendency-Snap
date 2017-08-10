@@ -69,4 +69,7 @@
     <string name="error_cv_set_2_mean">Please input <i>Mean</i> for Set 2.</string>
     <string name="error_cv_set_2_stdev">Please input <i>Standard Deviation</i> for Set 2.</string>
     <string name="error_cv_set_2_variance">Please input <i>Variance</i> for Set 2.</string>
+
+    <!-- exceptions -->
+    <string name="exp_crop_function">Your phone does not have crop functionality. You have to install app that has crop functionality.</string>
 </resources>

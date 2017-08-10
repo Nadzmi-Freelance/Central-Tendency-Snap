@@ -50,7 +50,7 @@ public class ExtractTextAsyncTask extends AsyncTask<Void, Void, Void> {
             tessBaseAPI.setImage(image);
 
             result = tessBaseAPI.getUTF8Text();
-            result = result.replaceAll("^[a-zA-Z]+", "");
+            result = result.replaceAll("^[a-zA-Z]+!@#$%^&*_-=|:';/", "");
 
             tessBaseAPI.end();
         } catch (Exception e) { e.printStackTrace(); }
