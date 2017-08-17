@@ -2,8 +2,8 @@
     <string name="app_name">CTCVS</string>
 
     <!-- main labels -->
-    <string name="lbl_group_data">Group Data</string>
-    <string name="lbl_ungroup_data">Ungroup Data</string>
+    <string name="lbl_group_data">Grouped Data</string>
+    <string name="lbl_ungroup_data">Ungrouped Data</string>
 
     <!-- group data -->
     <!-- labels -->
